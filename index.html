@@ -39,21 +39,28 @@
     Turn ideas into visuals instantly.  
     Built for creators, founders, and teams.
   </p>
-  <input type="email" id="emailInput" placeholder="Enter your email" style="padding:10px; border-radius:6px; width:250px;">
-<button onclick="saveEmail()" style="margin-left:10px;">Join the Waitlist</button>
+ <input type="email" id="emailInput" placeholder="Enter your email" style="padding:10px; border-radius:6px; width:250px;">
+<a id="waitlistLink" href="#" target="_blank">
+  <button style="margin-left:10px;">Join the Waitlist</button>
+</a>
+
 <p id="message" style="margin-top:10px;"></p>
 
 <script>
-function saveEmail() {
+document.querySelector('button').onclick = function() {
     var email = document.getElementById('emailInput').value;
     if(email) {
-        document.getElementById('message').innerText = "Thanks! " + email + " is on the waitlist.";
+        document.getElementById('message').innerText = "Redirecting to waitlist...";
+        // Replace YOUR_GOOGLE_FORM_LINK with your Google Form URL
+        var formLink = "https://docs.google.com/forms/d/e/1FAIpQLSfvy2ZL9P3bcFx24ck1W3hi0Q_8jG3-U-02AqEN09d_rLUSVA/viewform?usp=pp_url";
+        window.open(formLink + "&entry.505288260=" + encodeURIComponent(email), "_blank");
         document.getElementById('emailInput').value = "";
     } else {
         document.getElementById('message').innerText = "Please enter a valid email.";
     }
-}
+};
 </script>
+
 
 </body>
 </html>
