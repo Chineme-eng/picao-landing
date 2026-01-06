@@ -1,69 +1,279 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Picao AI</title>
+  <meta charset="UTF-8">
+  <title>Picao AI Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    html {
+      scroll-behavior: smooth; /* 🔹 Smooth scroll */
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #0f172a;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
       color: white;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(15,23,42,0.9);
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    nav img {
+      width: 50px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #6366f1;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
-      padding: 60px;
+      padding: 0 20px;
     }
-    h1 {
+
+    .hero img {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
       font-size: 48px;
+      margin: 10px 0;
     }
-    p {
+
+    .hero p {
       font-size: 20px;
+      margin: 10px 0 30px 0;
       max-width: 600px;
-      margin: 20px auto;
     }
-    button {
-      background: #6366f1;
-      border: none;
-      color: white;
-      padding: 14px 28px;
-      font-size: 18px;
+
+    .hero input {
+      padding: 12px;
       border-radius: 8px;
-      cursor: pointer;
+      border: none;
+      width: 280px;
+      max-width: 90%;
     }
-    button:hover {
+
+    .hero button {
+      padding: 12px 24px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #6366f1;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .hero button:hover {
       background: #4f46e5;
+    }
+
+    .hero #message {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+
+    /* About Section */
+    .about {
+      padding: 60px 20px;
+      background: #1e293b;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Features Section */
+    .features {
+      padding: 60px 20px;
+      background: #0f172a;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
+    .feature-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 250px;
+      flex: 1 1 250px;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      background: #2c3e50;
+    }
+
+    .feature-card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .about h2, .features h2 {
+        font-size: 28px;
+      }
+
+      .feature-card {
+        max-width: 90%;
+      }
+
+      nav ul {
+        gap: 10px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>Picao AI</h1>
-  <p>
-    Turn ideas into visuals instantly.  
-    Built for creators, founders, and teams.
-  </p>
- <input type="email" id="emailInput" placeholder="Enter your email" style="padding:10px; border-radius:6px; width:250px;">
-<a id="waitlistLink" href="#" target="_blank">
-  <button style="margin-left:10px;">Join the Waitlist</button>
-</a>
+  <!-- Navbar -->
+  <nav>
+    <img src="https://via.placeholder.com/50x50.png?text=PA" alt="Picao AI Logo">
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Features</a></li>
+    </ul>
+  </nav>
 
-<p id="message" style="margin-top:10px;"></p>
+  <!-- Hero / Waitlist Section -->
+  <section class="hero" id="hero">
+    <img src="https://via.placeholder.com/120x120.png?text=Picao+AI" alt="Picao AI Logo">
+    <h1>Picao AI</h1>
+    <p>Turn your ideas into visuals instantly. Built for creators, founders, and teams.</p>
 
-<script>
-document.querySelector('button').onclick = function() {
-    var email = document.getElementById('emailInput').value;
-    if(email) {
-        document.getElementById('message').innerText = "Redirecting to waitlist...";
-        // Replace YOUR_GOOGLE_FORM_LINK with your Google Form URL
-        var formLink = "https://docs.google.com/forms/d/e/1FAIpQLSfvy2ZL9P3bcFx24ck1W3hi0Q_8jG3-U-02AqEN09d_rLUSVA/viewform?usp=pp_url";
-        window.open(formLink + "&entry.505288260=" + encodeURIComponent(email), "_blank");
-        document.getElementById('emailInput').value = "";
-    } else {
-        document.getElementById('message').innerText = "Please enter a valid email.";
-    }
-};
-</script>
+    <input type="email" id="emailInput" placeholder="Enter your email">
+    <button>Join the Waitlist</button>
+    <p id="message"></p>
+  </section>
 
+  <!-- About Section -->
+  <section class="about" id="about">
+    <h2>About Picao AI</h2>
+    <p>
+      Picao AI is an AI-powered creative platform designed to help anyone turn ideas into visuals instantly.
+      Whether you’re a solo creator, a startup team, or a designer looking to speed up your workflow, 
+      Picao AI makes idea-to-image simple, fast, and intuitive.
+    </p>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <h2>Features</h2>
+    <div class="feature-cards">
+      <div class="feature-card">
+        <h3>Fast Image Generation</h3>
+        <p>Turn your ideas into visuals in seconds, saving hours of design work.</p>
+      </div>
+      <div class="feature-card">
+        <h3>AI-Powered Creativity</h3>
+        <p>Get suggestions, variations, and enhancements powered by advanced AI models.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Collaboration Friendly</h3>
+        <p>Share concepts with your team instantly and iterate together seamlessly.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Built by Kathrine Chineme Oduah
+  </footer>
+
+  <!-- Script for Waitlist -->
+  <script>
+    document.querySelector('.hero button').onclick = function() {
+        var email = document.getElementById('emailInput').value;
+        if(email) {
+            document.getElementById('message').innerText = "Redirecting to waitlist...";
+            
+            // 🔹 Replace this with your Google Form link
+            var formLink = "https://docs.google.com/forms/d/e/1FAIpQLSfvy2ZL9P3bcFx24ck1W3hi0Q_8jG3-U-02AqEN09d_rLUSVA/viewform?usp=pp_url";
+            
+            // 🔹 Replace this with your Google Form field ID
+            window.open(formLink + "&entry.505288260=" + encodeURIComponent(email), "_blank");
+
+            document.getElementById('emailInput').value = "";
+        } else {
+            document.getElementById('message').innerText = "Please enter a valid email.";
+        }
+    };
+  </script>
 
 </body>
 </html>
-
-
-Add interactive email input for waitlist
