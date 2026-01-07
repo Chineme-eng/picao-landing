@@ -1,24 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Picao AI Demo</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: #0b0f1a;
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #c7cbe3;
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: #12172a;
+      border-radius: 16px;
+      padding: 30px;
+    }
+
+    input {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 14px 24px;
+      font-size: 16px;
+      border-radius: 12px;
+      border: none;
+      background: #5b6cff;
+      color: white;
+      cursor: pointer;
+    }
+
+    .output {
+      margin-top: 30px;
+      background: #0b0f1a;
+      padding: 20px;
+      border-radius: 12px;
+      display: none;
+    }
+
+    .idea {
+      margin-bottom: 25px;
+    }
+
+    .idea h3 {
+      margin-bottom: 8px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #1e2447;
+      padding: 6px 10px;
+      border-radius: 8px;
+      margin-right: 8px;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+  </style>
 </head>
+
 <body>
+  <div class="container">
+    <h1>Picao AI – Creator Demo</h1>
+    <p>Enter your content style and see how Picao generates post ideas, captions, and hashtags.</p>
 
-  <h1>Picao AI Demo</h1>
-  <p>This is a prototype demo for investors.</p>
+    <div class="card">
+      <input
+        type="text"
+        placeholder="e.g. everyday life, lifestyle, vlogs"
+      />
 
-</body>
-</html>
+      <button onclick="showDemo()">Generate ideas</button>
+
+      <div class="output" id="output">
+        <div class="idea">
+          <h3>Option 1: Morning Reset Routine</h3>
+          <p>“Slow mornings are the secret to productive days. Here’s how I reset before the world wakes up ☀️”</p>
+          <div class="tag">#MorningRoutine</div>
+          <div class="tag">#DailyLife</div>
+          <div class="tag">
 
 
 
 
 
 
-
-
-Add basic demo structure
-
+Add interactive Picao AI demo mock
 
