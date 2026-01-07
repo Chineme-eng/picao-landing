@@ -16,7 +16,7 @@
     /* --- Header / Hero --- */
     header { text-align:center; padding:100px 20px 60px; }
     header h1 { font-size: 48px; margin-bottom:20px; }
-    header p { font-size:20px; color:#c7cbe3; max-width:700px; margin:auto 0 40px; }
+    header p { font-size:20px; color:#c7cbe3; max-width:700px; margin:0 auto 40px; text-align:center; }
     .hero-button {
       padding:16px 32px;
       font-size:18px;
@@ -37,25 +37,25 @@
     /* --- Demo Section --- */
     #demo-section { background:#1e293b; text-align:center; }
     #demo-section h2 { font-size:32px; margin-bottom:20px; }
-    #demo-section p { color:#cbd5e1; font-size:18px; margin-bottom:30px; max-width:700px; margin-left:auto; margin-right:auto; }
+    #demo-section p { color:#cbd5e1; font-size:18px; margin-bottom:30px; max-width:700px; margin:0 auto; }
     #demo-section button { padding:14px 28px; font-size:18px; border:none; border-radius:8px; background:#6366f1; color:white; }
     #demo-section button:hover { background:#4f46e5; transform: translateY(-2px); }
 
     /* --- Waitlist Section --- */
     #waitlist { text-align:center; }
     #waitlist h2 { font-size:32px; margin-bottom:20px; }
-    #waitlist p { color:#c7cbe3; font-size:18px; margin-bottom:20px; max-width:700px; margin:auto; }
-    #waitlist input { padding:14px; border-radius:8px; border:none; margin-bottom:12px; width:280px; max-width:90%; display:block; margin-left:auto; margin-right:auto; }
+    #waitlist p { color:#c7cbe3; font-size:18px; margin-bottom:20px; max-width:700px; margin:0 auto; text-align:center; }
+    #waitlist input { padding:14px; border-radius:8px; border:none; margin-bottom:12px; width:280px; max-width:90%; display:block; margin:0 auto; }
     #waitlist button {
       padding:16px 32px;
       font-size:18px;
       border:none;
       border-radius:10px;
-      background:#10b981;
+      background:#6366f1; /* Updated to blue theme */
       color:white;
       margin-top:8px;
     }
-    #waitlist button:hover { background:#059669; transform: translateY(-2px); }
+    #waitlist button:hover { background:#4f46e5; transform: translateY(-2px); }
     #thankyou-message { color:#10b981; margin-top:12px; display:none; }
 
     /* --- Footer --- */
@@ -117,7 +117,7 @@
 
   <script>
     // Google Form ID (replace with your actual Form ID)
-    const FORM_ID = "YOUR_GOOGLE_FORM_ID_HERE"; // e.g., "1FAIpQLS..."
+    const FORM_ID = "https://docs.google.com/forms/d/e/1FAIpQLSfvy2ZL9P3bcFx24ck1W3hi0Q_8jG3-U-02AqEN09d_rLUSVA/"; // e.g., "1FAIpQLS..."
     function submitWaitlist() {
       const email = document.getElementById("email").value;
       if(!email) { alert("Please enter your email."); return; }
@@ -125,7 +125,7 @@
       const url = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
       const data = new FormData();
       // Replace 'entry.1234567890' with your form's email field entry ID
-      data.append('entry.1234567890', email);
+      data.append('entry.505288260', email);
 
       fetch(url, { method: 'POST', mode:'no-cors', body:data })
         .then(() => {
