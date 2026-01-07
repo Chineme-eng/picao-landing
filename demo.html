@@ -125,7 +125,9 @@
 
   <script>
     function showDemo() {
-      document.getElementById("output").style.display = "block";
+     const output = document.getElementById("output");
+      output.style.display = "block";
+    output.scrollIntoView({ behavior: "smooth" })
     }
   </script>
 </body>
