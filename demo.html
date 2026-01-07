@@ -26,7 +26,7 @@
     p {
       color: #c7cbe3;
       font-size: 18px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
 
     .top-options button {
@@ -36,15 +36,17 @@
       border: none;
       font-size: 16px;
       cursor: pointer;
-      background: #5b6cff;
+      background: linear-gradient(135deg, #5b6cff, #7280ff);
       color: white;
       transition: 0.3s;
       box-shadow: 0 0 0 rgba(91,108,255,0);
+      display: inline-block;
+      vertical-align: top;
     }
 
     .top-options button:hover {
-      background: #4a54d1;
-      box-shadow: 0 0 12px rgba(91,108,255,0.6);
+      background: linear-gradient(135deg, #4a54d1, #5f68ff);
+      box-shadow: 0 0 15px rgba(91,108,255,0.8);
     }
 
     .top-options button:active { 
@@ -55,12 +57,12 @@
     .top-options button span {
       display: block;
       font-size: 12px;
-      color: #8b90c9;
+      color: #c7cbe3;
       margin-top: 4px;
     }
 
     .top-options button.selected {
-      box-shadow: 0 0 20px rgba(91,108,255,0.9);
+      box-shadow: 0 0 25px rgba(91,108,255,1);
     }
 
     .output {
@@ -70,6 +72,13 @@
       border-radius: 16px;
       display: none;
       text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    .result-header {
+      font-size: 18px;
+      color: #8b90c9;
+      margin-bottom: 20px;
     }
 
     .idea {
@@ -77,6 +86,14 @@
       opacity: 0;
       transform: translateY(10px);
       animation: fadeIn 0.4s forwards;
+      background: #1a1f33;
+      padding: 15px;
+      border-radius: 12px;
+      transition: transform 0.2s ease;
+    }
+
+    .idea:hover {
+      transform: translateY(-2px);
     }
 
     @keyframes fadeIn {
@@ -101,6 +118,13 @@
       margin-right: 8px;
       margin-top: 8px;
       font-size: 14px;
+      transition: transform 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+    }
+
+    .tag:hover {
+      transform: scale(1.1);
+      background: #2a3170;
     }
 
     .disclaimer {
@@ -123,6 +147,29 @@
 
     .back-button:hover {
       background: #2e3145;
+    }
+
+    .copy-button {
+      margin-top: 10px;
+      background: #5b6cff;
+      color: white;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: 0.2s;
+    }
+
+    .copy-button:hover {
+      background: #4a54d1;
+    }
+
+    /* Mobile responsive */
+    @media(max-width: 600px) {
+      .top-options button {
+        width: 100%;
+      }
     }
 
   </style>
@@ -176,6 +223,17 @@
       const container = document.getElementById("sub-options");
       container.innerHTML = ""; // clear previous
 
+      // Show header for selected option
+      const header = document.createElement("div");
+      header.className = "result-header";
+      const titleMap = {
+        option1: "Morning Reset Routine",
+        option2: "A Day in My Life",
+        option3: "Small Wins"
+      };
+      header.innerText = `Showing results for: ${titleMap[optionKey]}`;
+      container.appendChild(header);
+
       // Highlight selected button
       document.querySelectorAll(".top-options button").forEach(btn => {
         btn.classList.remove("selected");
@@ -187,7 +245,8 @@
         div.className = "idea";
         div.innerHTML = `<h3>${item.title}</h3>
                          <p>${item.caption}</p>
-                         ${item.hashtags.map(tag=>`<span class="tag">${tag}</span>`).join('')}`;
+                         ${item.hashtags.map(tag=>`<span class="tag" onclick='copyHashtags(["${tag}"])'>${tag}</span>`).join('')}
+                         <br><button class="copy-button" onclick='copyHashtags(${JSON.stringify(item.hashtags)})'>Copy all hashtags</button>`;
         container.appendChild(div);
       });
 
@@ -206,8 +265,13 @@
       const container = document.getElementById("sub-options");
       container.style.display = "none";
       container.innerHTML = "";
-      // Remove selected highlight
       document.querySelectorAll(".top-options button").forEach(btn => btn.classList.remove("selected"));
+    }
+
+    function copyHashtags(hashtags) {
+      navigator.clipboard.writeText(hashtags.join(" ")).then(() => {
+        alert("Hashtags copied!");
+      });
     }
   </script>
 </body>
