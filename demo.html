@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Picao AI Demo</title>
-
   <style>
     body {
       margin: 0;
@@ -16,6 +15,7 @@
       max-width: 900px;
       margin: 0 auto;
       padding: 80px 20px;
+      text-align: center;
     }
 
     h1 {
@@ -29,37 +29,29 @@
       margin-bottom: 40px;
     }
 
-    .card {
-      background: #12172a;
-      border-radius: 16px;
-      padding: 30px;
-    }
-
-    input {
-      width: 100%;
-      padding: 16px;
+    .top-options button {
+      margin: 10px;
+      padding: 16px 24px;
       border-radius: 12px;
       border: none;
       font-size: 16px;
-      margin-bottom: 20px;
-    }
-
-    button {
-      padding: 14px 24px;
-      font-size: 16px;
-      border-radius: 12px;
-      border: none;
+      cursor: pointer;
       background: #5b6cff;
       color: white;
-      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .top-options button:hover {
+      background: #4a54d1;
     }
 
     .output {
       margin-top: 30px;
-      background: #0b0f1a;
-      padding: 20px;
-      border-radius: 12px;
+      background: #12172a;
+      padding: 30px;
+      border-radius: 16px;
       display: none;
+      text-align: left;
     }
 
     .idea {
@@ -68,6 +60,12 @@
 
     .idea h3 {
       margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .idea p {
+      margin-bottom: 8px;
+      color: #c7cbe3;
     }
 
     .tag {
@@ -79,58 +77,66 @@
       margin-top: 8px;
       font-size: 14px;
     }
+
+    .disclaimer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #8b90c9;
+    }
   </style>
 </head>
-
 <body>
   <div class="container">
     <h1>Picao AI – Creator Demo</h1>
-    <p>Enter your content style and see how Picao generates post ideas, captions, and hashtags.</p>
+    <p>
+      Explore how Picao generates Instagram post ideas, captions, and hashtags.  
+      <span class="disclaimer">Demo prototype – outputs are pre-generated for illustration purposes.</span>
+    </p>
 
-    <div class="card">
-      <input
-        type="text"
-        placeholder="e.g. everyday life, lifestyle, vlogs"
-      />
+    <div class="top-options">
+      <button onclick="showSubOptions('option1')">Morning Reset Routine</button>
+      <button onclick="showSubOptions('option2')">A Day in My Life</button>
+      <button onclick="showSubOptions('option3')">Small Wins</button>
+    </div>
 
-      <button onclick="showDemo()">Generate ideas</button>
-
-      <div class="output" id="output">
-        <div class="idea">
-          <h3>Option 1: Morning Reset Routine</h3>
-          <p>“Slow mornings are the secret to productive days. Here’s how I reset before the world wakes up ☀️”</p>
-          <div class="tag">#MorningRoutine</div>
-          <div class="tag">#DailyLife</div>
-          <div class="tag">#SoftLife</div>
-        </div>
-
-        <div class="idea">
-          <h3>Option 2: A Day in My Life</h3>
-          <p>“Nothing fancy — just real moments from today. Life doesn’t have to be aesthetic to be meaningful.”</p>
-          <div class="tag">#DayInMyLife</div>
-          <div class="tag">#RealLife</div>
-          <div class="tag">#CreatorLife</div>
-        </div>
-
-        <div class="idea">
-          <h3>Option 3: Small Wins</h3>
-          <p>“Romanticizing the little wins because they add up more than we think ✨”</p>
-          <div class="tag">#EverydayMoments</div>
-          <div class="tag">#LifeContent</div>
-          <div class="tag">#MindfulLiving</div>
-        </div>
-      </div>
+    <div id="sub-options" class="output">
+      <!-- Sub-options will appear here -->
     </div>
   </div>
 
   <script>
-    function showDemo() {
-     const output = document.getElementById("output");
-      output.style.display = "block";
-    output.scrollIntoView({ behavior: "smooth" })
+    const demoData = {
+      option1: [
+        {title: "Morning Idea 1", caption: "Slow mornings with coffee.", hashtags: ["#MorningRoutine","#DailyLife","#SoftLife"]},
+        {title: "Morning Idea 2", caption: "Sunrise yoga + journaling.", hashtags: ["#MorningYoga","#LifeBalance","#CreatorLife"]},
+        {title: "Morning Idea 3", caption: "Quick workout + breakfast ritual.", hashtags: ["#QuickWins","#HealthyStart","#DailyRoutine"]}
+      ],
+      option2: [
+        {title: "Day Idea 1", caption: "Errands and coffee adventures.", hashtags:["#DailyLife","#Errands","#CoffeeLover"]},
+        {title: "Day Idea 2", caption: "Casual walk & park exploration.", hashtags:["#LifeOutside","#FreshAir","#EverydayMoments"]},
+        {title: "Day Idea 3", caption: "Evening reflections at home.", hashtags:["#EveningRoutine","#HomeVibes","#MindfulLiving"]}
+      ],
+      option3: [
+        {title: "Wins Idea 1", caption: "Finished a project early.", hashtags:["#Productivity","#Wins","#LifeContent"]},
+        {title: "Wins Idea 2", caption: "Small personal achievement.", hashtags:["#SmallWins","#LifeContent","#Celebrate"]},
+        {title: "Wins Idea 3", caption: "Shared joy with friends.", hashtags:["#HappyMoments","#EverydayLife","#SocialLife"]}
+      ]
+    };
+
+    function showSubOptions(optionKey) {
+      const container = document.getElementById("sub-options");
+      container.innerHTML = ""; // clear previous
+      demoData[optionKey].forEach(item => {
+        const div = document.createElement("div");
+        div.className = "idea";
+        div.innerHTML = `<h3>${item.title}</h3>
+                         <p>${item.caption}</p>
+                         ${item.hashtags.map(tag=>`<span class="tag">${tag}</span>`).join('')}`;
+        container.appendChild(div);
+      });
+      container.style.display = "block";
+      container.scrollIntoView({behavior:"smooth"});
     }
   </script>
 </body>
 </html>
-
-
