@@ -2,278 +2,90 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Picao AI Demo</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Inter, Arial, sans-serif;
-      background: #0b0f1a;
-      color: #ffffff;
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Picao AI Demo - All your tasks, one assistant</title>
+  <meta name="description" content="Interactive demo of Picao AI showing captions, visuals, and idea structuring.">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+
+  <!-- Header / Navigation -->
+  <header class="bg-white shadow-md py-6">
+    <div class="max-w-5xl mx-auto flex justify-between items-center px-4">
+      <h1 class="text-2xl font-bold text-blue-600">Picao AI Demo</h1>
+      <a href="index.html" class="text-blue-600 font-semibold hover:underline">Back to Home</a>
+    </div>
+  </header>
+
+  <!-- Demo Hero Section -->
+  <section class="py-16 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">Try Picao AI in real time</h2>
+    <p class="text-gray-700 mb-8 max-w-2xl mx-auto">
+      Enter your inputs and see how Picao AI generates captions, visuals, and structures ideas instantly — no coding or design experience required.
+    </p>
+  </section>
+
+  <!-- Interactive Demo Cards -->
+  <section class="max-w-5xl mx-auto px-4 grid md:grid-cols-3 gap-8 mb-20">
+    
+    <!-- Captions Card -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center hover:scale-105 transition-transform">
+      <h3 class="text-xl font-semibold mb-4">Generate Captions</h3>
+      <textarea id="captionInput" rows="3" placeholder="Enter your topic..." class="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+      <button onclick="generateCaption()" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition mb-4">Generate</button>
+      <div id="captionOutput" class="text-gray-700 text-center mt-2"></div>
+    </div>
+
+    <!-- Visuals Card -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center hover:scale-105 transition-transform">
+      <h3 class="text-xl font-semibold mb-4">Generate Visuals</h3>
+      <input id="visualInput" type="text" placeholder="Describe an image..." class="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600">
+      <button onclick="generateVisual()" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition mb-4">Generate</button>
+      <img id="visualOutput" class="rounded-lg shadow-md mt-2 w-full max-h-64 object-contain" alt="">
+    </div>
+
+    <!-- Idea Structuring Card -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center hover:scale-105 transition-transform">
+      <h3 class="text-xl font-semibold mb-4">Structure Ideas</h3>
+      <textarea id="ideaInput" rows="3" placeholder="Enter your idea..." class="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+      <button onclick="generateIdea()" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition mb-4">Generate</button>
+      <div id="ideaOutput" class="text-gray-700 text-center mt-2"></div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 text-center text-gray-600 text-sm bg-white shadow-inner">
+    Powered by Picao AI | Built by Chineme, founder and CEO
+  </footer>
+
+  <!-- Demo JS -->
+  <script>
+    // Mock demo functions, replace with actual AI integration
+    function generateCaption() {
+      const input = document.getElementById('captionInput').value;
+      const output = document.getElementById('captionOutput');
+      output.textContent = input ? `"${input}" - Perfect caption generated!` : "Enter a topic first!";
     }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: #c7cbe3;
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    .top-options button {
-      margin: 10px;
-      padding: 16px 24px;
-      border-radius: 12px;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-      background: linear-gradient(135deg, #5b6cff, #7280ff);
-      color: white;
-      transition: 0.3s;
-      box-shadow: 0 0 0 rgba(91,108,255,0);
-      display: inline-block;
-      vertical-align: top;
-    }
-
-    .top-options button:hover {
-      background: linear-gradient(135deg, #4a54d1, #5f68ff);
-      box-shadow: 0 0 15px rgba(91,108,255,0.8);
-    }
-
-    .top-options button:active { 
-      transform: scale(0.97); 
-      opacity:0.9; 
-    }
-
-    .top-options button span {
-      display: block;
-      font-size: 12px;
-      color: #c7cbe3;
-      margin-top: 4px;
-    }
-
-    .top-options button.selected {
-      box-shadow: 0 0 25px rgba(91,108,255,1);
-    }
-
-    .output {
-      margin-top: 30px;
-      background: #12172a;
-      padding: 30px;
-      border-radius: 16px;
-      display: none;
-      text-align: left;
-      transition: all 0.3s ease;
-    }
-
-    .result-header {
-      font-size: 18px;
-      color: #8b90c9;
-      margin-bottom: 20px;
-    }
-
-    .idea {
-      margin-bottom: 25px;
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeIn 0.4s forwards;
-      background: #1a1f33;
-      padding: 15px;
-      border-radius: 12px;
-      transition: transform 0.2s ease;
-    }
-
-    .idea:hover {
-      transform: translateY(-2px);
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .idea h3 {
-      margin-bottom: 8px;
-      color: #ffffff;
-    }
-
-    .idea p {
-      margin-bottom: 8px;
-      color: #c7cbe3;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #1e2447;
-      padding: 6px 10px;
-      border-radius: 8px;
-      margin-right: 8px;
-      margin-top: 8px;
-      font-size: 14px;
-      transition: transform 0.2s ease, background 0.2s ease;
-      cursor: pointer;
-    }
-
-    .tag:hover {
-      transform: scale(1.1);
-      background: #2a3170;
-    }
-
-    .disclaimer {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #8b90c9;
-    }
-
-    .back-button {
-      margin-top: 20px;
-      background: #3b3f58;
-      padding: 12px 20px;
-      border-radius: 10px;
-      border: none;
-      color: white;
-      cursor: pointer;
-      font-size: 14px;
-      transition: 0.2s;
-    }
-
-    .back-button:hover {
-      background: #2e3145;
-    }
-
-    .copy-button {
-      margin-top: 10px;
-      background: #5b6cff;
-      color: white;
-      padding: 8px 14px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 12px;
-      transition: 0.2s;
-    }
-
-    .copy-button:hover {
-      background: #4a54d1;
-    }
-
-    /* Mobile responsive */
-    @media(max-width: 600px) {
-      .top-options button {
-        width: 100%;
+    function generateVisual() {
+      const input = document.getElementById('visualInput').value;
+      const img = document.getElementById('visualOutput');
+      if(input) {
+        // Placeholder image (replace with AI-generated image URL)
+        img.src = 'https://via.placeholder.com/400x200?text=' + encodeURIComponent(input);
+      } else {
+        img.src = '';
+        img.alt = 'Describe an image above';
       }
     }
 
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Picao AI – Creator Demo</h1>
-    <p>
-      Explore how Picao generates Instagram post ideas, captions, and hashtags.  
-      <span class="disclaimer">Demo prototype – outputs are pre-generated for illustration purposes.</span>
-    </p>
-
-    <div id="top-container" class="top-options">
-      <button onclick="showSubOptions('option1')">
-        Morning Reset Routine
-        <span>Content idea for morning posts</span>
-      </button>
-      <button onclick="showSubOptions('option2')">
-        A Day in My Life
-        <span>Content idea for daily life posts</span>
-      </button>
-      <button onclick="showSubOptions('option3')">
-        Small Wins
-        <span>Content idea for everyday achievements</span>
-      </button>
-    </div>
-
-    <div id="sub-options" class="output"></div>
-  </div>
-
-  <script>
-    const demoData = {
-      option1: [
-        {title: "Morning Idea 1", caption: "Slow mornings with coffee.", hashtags: ["#MorningRoutine","#DailyLife","#SoftLife"]},
-        {title: "Morning Idea 2", caption: "Sunrise yoga + journaling.", hashtags: ["#MorningYoga","#LifeBalance","#CreatorLife"]},
-        {title: "Morning Idea 3", caption: "Quick workout + breakfast ritual.", hashtags: ["#QuickWins","#HealthyStart","#DailyRoutine"]}
-      ],
-      option2: [
-        {title: "Day Idea 1", caption: "Errands and coffee adventures.", hashtags:["#DailyLife","#Errands","#CoffeeLover"]},
-        {title: "Day Idea 2", caption: "Casual walk & park exploration.", hashtags:["#LifeOutside","#FreshAir","#EverydayMoments"]},
-        {title: "Day Idea 3", caption: "Evening reflections at home.", hashtags:["#EveningRoutine","#HomeVibes","#MindfulLiving"]}
-      ],
-      option3: [
-        {title: "Wins Idea 1", caption: "Finished a project early.", hashtags:["#Productivity","#Wins","#LifeContent"]},
-        {title: "Wins Idea 2", caption: "Small personal achievement.", hashtags:["#SmallWins","#LifeContent","#Celebrate"]},
-        {title: "Wins Idea 3", caption: "Shared joy with friends.", hashtags:["#HappyMoments","#EverydayLife","#SocialLife"]}
-      ]
-    };
-
-    function showSubOptions(optionKey) {
-      const container = document.getElementById("sub-options");
-      container.innerHTML = ""; // clear previous
-
-      // Show header for selected option
-      const header = document.createElement("div");
-      header.className = "result-header";
-      const titleMap = {
-        option1: "Morning Reset Routine",
-        option2: "A Day in My Life",
-        option3: "Small Wins"
-      };
-      header.innerText = `Showing results for: ${titleMap[optionKey]}`;
-      container.appendChild(header);
-
-      // Highlight selected button
-      document.querySelectorAll(".top-options button").forEach(btn => {
-        btn.classList.remove("selected");
-      });
-      document.querySelectorAll(".top-options button")[["option1","option2","option3"].indexOf(optionKey)].classList.add("selected");
-
-      demoData[optionKey].forEach(item => {
-        const div = document.createElement("div");
-        div.className = "idea";
-        div.innerHTML = `<h3>${item.title}</h3>
-                         <p>${item.caption}</p>
-                         ${item.hashtags.map(tag=>`<span class="tag" onclick='copyHashtags(["${tag}"])'>${tag}</span>`).join('')}
-                         <br><button class="copy-button" onclick='copyHashtags(${JSON.stringify(item.hashtags)})'>Copy all hashtags</button>`;
-        container.appendChild(div);
-      });
-
-      // Add a back button
-      const backBtn = document.createElement("button");
-      backBtn.className = "back-button";
-      backBtn.innerText = "← Choose another theme";
-      backBtn.onclick = resetDemo;
-      container.appendChild(backBtn);
-
-      container.style.display = "block";
-      container.scrollIntoView({behavior:"smooth"});
-    }
-
-    function resetDemo() {
-      const container = document.getElementById("sub-options");
-      container.style.display = "none";
-      container.innerHTML = "";
-      document.querySelectorAll(".top-options button").forEach(btn => btn.classList.remove("selected"));
-    }
-
-    function copyHashtags(hashtags) {
-      navigator.clipboard.writeText(hashtags.join(" ")).then(() => {
-        alert("Hashtags copied!");
-      });
+    function generateIdea() {
+      const input = document.getElementById('ideaInput').value;
+      const output = document.getElementById('ideaOutput');
+      output.textContent = input ? `Structured idea for "${input}" ready to go!` : "Enter an idea first!";
     }
   </script>
+
 </body>
 </html>
-
