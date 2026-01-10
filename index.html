@@ -3,177 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Picao — Tools for Creators</title>
+<title>Picao — Assistant for Creators</title>
 <style>
 /* ===== GLOBAL ===== */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: #ffffff;
-  color: #000000;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-a { text-decoration: none; color: inherit; }
-.container { max-width: 1200px; margin: auto; padding: 0 20px; }
-h1,h2,h3 { margin: 0 0 20px; }
+body { margin:0; font-family:'Segoe UI',Arial,sans-serif; background:#fff; color:#000; scroll-behavior:smooth; overflow-x:hidden; }
+a { text-decoration:none; color:inherit; }
+.container { max-width:1200px; margin:auto; padding:0 20px; }
+h1,h2,h3 { margin:0 0 20px; }
 
 /* ===== NAVBAR ===== */
-.navbar {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  background: #ffffff;
-  display: flex;
-  justify-content: center;
-  padding: 15px 0;
-  z-index: 999;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-.navbar a {
-  color: #007BFF;
-  margin: 0 20px;
-  font-weight: bold;
-  transition: color 0.2s;
-}
-.navbar a:hover { color: #0056b3; }
+.navbar { position:sticky; top:0; width:100%; background:#fff; display:flex; justify-content:center; padding:15px 0; z-index:999; box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+.navbar a { color:#007BFF; margin:0 20px; font-weight:bold; transition:0.2s;}
+.navbar a:hover { color:#0056b3; }
 
 /* ===== HERO ===== */
-.hero {
-  position: relative;
-  text-align: center;
-  padding: 120px 20px 100px;
-  background: linear-gradient(135deg, #ffffff, #f0f0f0);
-  overflow: hidden;
-}
-.hero h1 { font-size: 3em; line-height: 1.2; color: #000; }
-.hero p { font-size: 1.2em; margin-bottom: 30px; color: #444; }
-.hero canvas { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; }
+.hero { position:relative; text-align:center; padding:120px 20px 100px; background:linear-gradient(135deg,#ffffff,#f0f0f0); overflow:hidden;}
+.hero h1 { font-size:3em; line-height:1.2; color:#000; }
+.hero p { font-size:1.2em; margin-bottom:30px; color:#444; }
+.hero canvas { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; }
 
 /* ===== BUTTON ===== */
-button {
-  cursor: pointer;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 24px;
-  background: #007BFF;
-  color: #fff;
-  font-weight: bold;
-  transition: 0.3s;
-}
-button:hover { background: #0056b3; transform: scale(1.05); }
+button { cursor:pointer; border:none; border-radius:6px; padding:12px 24px; background:#007BFF; color:#fff; font-weight:bold; transition:0.3s;}
+button:hover { background:#0056b3; transform:scale(1.05); }
 
 /* ===== INPUT ===== */
-input {
-  padding: 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1em;
-  background: #f8f8f8;
-  color: #000;
-}
+input { padding:12px; border-radius:6px; border:1px solid #ccc; font-size:1em; background:#f8f8f8; color:#000; width:100%; }
 
 /* ===== EARLY ACCESS ===== */
-.early-access {
-  text-align: center;
-  background: #f8f8f8;
-  border-radius: 12px;
-  padding: 60px 20px;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.05);
-  position: relative;
-}
-#formSuccess {
-  position: absolute;
-  top: 10px; left: 50%;
-  transform: translateX(-50%);
-  color: #00c4ff;
-  font-weight: bold;
-  opacity: 0;
-  transition: opacity 0.5s;
-}
+.early-access { text-align:center; background:#f8f8f8; border-radius:12px; padding:60px 20px; box-shadow:0 5px 25px rgba(0,0,0,0.05); position:relative; }
+.waitlist-note { margin-bottom:15px; font-weight:bold; color:#007BFF; }
+#formSuccess { position:absolute; top:10px; left:50%; transform:translateX(-50%); color:#00c4ff; font-weight:bold; opacity:0; transition:opacity 0.5s; }
 
 /* ===== DEMO ===== */
-.demo-callout {
-  text-align: center;
-  background: #f8f8f8;
-  border-radius: 12px;
-  padding: 60px 20px;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.05);
-}
+.demo-callout { text-align:center; background:#f8f8f8; border-radius:12px; padding:60px 20px; box-shadow:0 5px 25px rgba(0,0,0,0.05); }
 
 /* ===== FEATURES CAROUSEL ===== */
-.carousel-container {
-  overflow: hidden;
-  position: relative;
-  margin: 0 auto;
-  max-width: 1000px;
-}
-.carousel-track {
-  display: flex;
-  transition: transform 0.5s linear;
-}
-.feature-card {
-  min-width: 300px;
-  margin: 0 20px;
-  background: #ffffff;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  padding: 40px 20px;
-  flex-shrink: 0;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.feature-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1);}
-.feature-icon svg { width:50px;height:50px;margin-bottom:15px; fill:#007BFF; }
+.carousel-container { overflow:hidden; position:relative; margin:0 auto; max-width:1000px; }
+.carousel-track { display:flex; transition:transform 0.5s linear; }
+.feature-card { min-width:300px; margin:0 20px; background:#fff; border:1px solid #eee; border-radius:12px; padding:40px 20px; flex-shrink:0; text-align:center; transition:transform 0.3s,box-shadow 0.3s; }
+.feature-card:hover { transform:translateY(-10px); box-shadow:0 10px 25px rgba(0,0,0,0.1); }
+.feature-icon svg { width:50px; height:50px; margin-bottom:15px; fill:#007BFF; }
 
 /* ===== WHY CREATORS ===== */
-.why-creators {
-  background: #f8f8f8;
-  border-radius: 12px;
-  padding: 60px 20px;
-  text-align: center;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.05);
-  transform: translateY(50px);
-  opacity: 0;
-  transition: all 1s ease-out;
-}
+.why-creators { background:#f8f8f8; border-radius:12px; padding:60px 20px; text-align:center; box-shadow:0 5px 25px rgba(0,0,0,0.05); transform:translateY(50px); opacity:0; transition:all 1s ease-out; }
 
 /* ===== FOOTER ===== */
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  font-size: 0.9em;
-  color: #444;
-}
-footer a { color: #007BFF; margin: 0 10px; }
+footer { text-align:center; padding:40px 20px; font-size:0.9em; color:#444;}
+footer a { color:#007BFF; margin:0 10px; }
 
 /* ===== STICKY DEMO BUTTON ===== */
-.sticky-demo-btn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: #007BFF;
-  color: #fff;
-  padding: 15px 25px;
-  border-radius: 50px;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-  z-index: 1000;
-  transform: translateY(100px);
-  opacity: 0;
-  transition: transform 0.5s, opacity 0.5s, background 0.3s;
-}
-.sticky-demo-btn.show { transform: translateY(0); opacity:1; }
-.sticky-demo-btn:hover { background: #0056b3; }
+.sticky-demo-btn { position:fixed; bottom:30px; right:30px; background:#007BFF; color:#fff; padding:15px 25px; border-radius:50px; font-weight:bold; text-decoration:none; box-shadow:0 5px 25px rgba(0,0,0,0.1); z-index:1000; transform:translateY(100px); opacity:0; transition:transform 0.5s, opacity 0.5s, background 0.3s;}
+.sticky-demo-btn.show { transform:translateY(0); opacity:1; }
+.sticky-demo-btn:hover { background:#0056b3; }
 
 /* ===== MEDIA ===== */
-@media (max-width:768px){
-  .feature-card { min-width:250px; margin:0 10px;}
-  .early-access input { width:100%; margin-bottom:10px;}
-  .early-access button { width:100%;}
-  .sticky-demo-btn{bottom:20px;right:20px;padding:12px 20px;}
-}
+@media(max-width:768px){.feature-card{min-width:250px; margin:0 10px;} .early-access button,input{width:100%;} .sticky-demo-btn{bottom:20px;right:20px;padding:12px 20px;}}
 </style>
 </head>
 <body>
@@ -188,19 +72,19 @@ footer a { color: #007BFF; margin: 0 10px; }
 <!-- HERO -->
 <section class="hero">
   <canvas id="heroCanvas"></canvas>
-  <h1>Picao — Tools for Creators</h1>
-  <p>Generate captions, visuals, and fresh ideas instantly.</p>
+  <h1>Picao — Assistant for Creators</h1>
+  <p>The all-in-one assistant that helps creators save time, generate ideas, captions, and visuals instantly.</p>
   <a href="#demo"><button>Try the Demo</button></a>
 </section>
 
 <!-- EARLY ACCESS -->
 <section class="container" id="early-access">
   <div class="early-access">
+    <div class="waitlist-note">Picao AI currently has a waitlist of early users eager to test the platform. Enter your email below to join!</div>
     <div id="formSuccess">✓ Thanks! We’ve received your entry.</div>
-    <h2>Get Early Access</h2>
-    <p>Enter your email to be among the first to try Picao.</p>
+    <h2>Join the Waitlist</h2>
     <form id="earlyAccessForm">
-      <input type="email" id="userEmail" placeholder="Enter your email" required />
+      <input type="email" id="userEmail" placeholder="Enter your email" required/>
       <button type="submit">Join Now</button>
     </form>
   </div>
@@ -209,19 +93,17 @@ footer a { color: #007BFF; margin: 0 10px; }
 <!-- DEMO -->
 <section class="container" id="demo">
   <div class="demo-callout">
-    <h2>Launch the Demo</h2>
-    <p>Type a prompt to see Picao in action instantly.</p>
-    <div id="demoSkeleton" style="background:#e0e0e0; height:150px; border-radius:8px; margin:20px auto 0; width:80%;"></div>
-    <a href="demo.html"><button>Launch Demo</button></a>
+    <h2>Interactive Demo</h2>
+    <p>Type a prompt below and see how Picao generates ideas and captions instantly.</p>
+    <iframe src="https://picaoai.com/demo.html" style="width:100%; height:400px; border-radius:12px; border:1px solid #ccc;"></iframe>
   </div>
 </section>
 
-<!-- FEATURES CAROUSEL -->
+<!-- FEATURES SECTION -->
 <section class="container" id="features">
   <h2 style="text-align:center; margin-bottom:40px;">Features</h2>
   <div class="carousel-container">
-    <div class="carousel-track">
-      <!-- Original cards -->
+    <div class="carousel-track" id="carouselTrack">
       <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 64 64"><path d="M32 0 L64 64 H0 Z"/></svg></div><h3>Smart Captions</h3><p>Generate captions instantly.</p></div>
       <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="32"/></svg></div><h3>Visual Concepts</h3><p>Turn ideas into visuals quickly.</p></div>
       <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 64 64"><rect width="64" height="64"/></svg></div><h3>Idea Brainstorm</h3><p>Spark new project ideas.</p></div>
@@ -234,9 +116,9 @@ footer a { color: #007BFF; margin: 0 10px; }
 <section class="container" id="why">
   <div class="why-creators">
     <h2>Why Creators Need Picao</h2>
-    <p>Save hours on brainstorming and repetitive tasks so you can focus on creating.</p>
-    <p>Picao integrates seamlessly into your workflow and helps produce high-quality content faster.</p>
-    <p>Perfect for creators, marketers, and founders looking to scale output efficiently.</p>
+    <p>Creators often spend hours on repetitive tasks, brainstorming ideas, and managing content instead of focusing on what they love — creating.</p>
+    <p>Picao helps you save time by generating captions, visuals, and prompts instantly. It’s an assistant designed to let you focus on actual creation.</p>
+    <p>Whether you’re a marketer, social media manager, or founder, Picao streamlines your workflow and scales your output.</p>
   </div>
 </section>
 
@@ -249,12 +131,9 @@ footer a { color: #007BFF; margin: 0 10px; }
 <!-- STICKY DEMO BUTTON -->
 <a href="#demo" class="sticky-demo-btn">Try Demo</a>
 
-<!-- ===== SCRIPTS ===== -->
 <script>
 // HERO PARTICLES
-const canvas=document.getElementById('heroCanvas');
-const ctx=canvas.getContext('2d');
-let w,h,particles=[];
+const canvas=document.getElementById('heroCanvas'); const ctx=canvas.getContext('2d'); let w,h,particles=[];
 function resizeCanvas(){w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; initParticles();}
 window.addEventListener('resize',resizeCanvas);
 function initParticles(){particles=[]; for(let i=0;i<80;i++){particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.3,dy:(Math.random()-0.5)*0.3});}}
@@ -267,52 +146,40 @@ const emailInput=document.getElementById('userEmail');
 const success=document.getElementById('formSuccess');
 form.addEventListener('submit',e=>{
   e.preventDefault();
-  const email=emailInput.value.trim();
-  if(!email) return;
+  const email=emailInput.value.trim(); if(!email) return;
   const formId='1FAIpQLSfvy2ZL9P3bcFx24ck1W3hi0Q_8jG3-U-02AqEN09d_rLUSVA';
-  const entryId='entry.505288260';
-  const url=`https://docs.google.com/forms/d/e/${1FAIpQLSfvy2ZL9P3bcFx24ck1W3hi0Q_8jG3-U-02AqEN09d_rLUSVA}/formResponse`;
+  const entryId=''entry.505288260;
   const data=new FormData();
   data.append(entryId,email);
-  fetch(url,{method:'POST',mode:'no-cors',body:data})
+  fetch(`https://docs.google.com/forms/d/e/${1FAIpQLSfvy2ZL9P3bcFx24ck1W3hi0Q_8jG3-U-02AqEN09d_rLUSVA}/formResponse`,{method:'POST',mode:'no-cors',body:data})
     .then(()=>{success.style.opacity=1; setTimeout(()=>success.style.opacity=0,2500); emailInput.value='';})
     .catch(()=>{alert("Oops! Something went wrong.")});
 });
 
-// CAROUSEL - INFINITE LOOP + TOUCH
-const track=document.querySelector('.carousel-track');
+// SEAMLESS FEATURES CAROUSEL
+const track=document.getElementById('carouselTrack');
 let cards=document.querySelectorAll('.feature-card');
 const cardWidth=cards[0].offsetWidth+40;
+
+// Duplicate cards for seamless loop
+cards.forEach(card=>{track.appendChild(card.cloneNode(true));});
 let index=0;
 
-// Clone cards for seamless infinite effect
-cards.forEach(card=>{track.appendChild(card.cloneNode(true));});
-cards=document.querySelectorAll('.feature-card');
+function moveCarousel(){
+  index++;
+  track.style.transition='transform 0.5s linear';
+  track.style.transform=`translateX(-${index*cardWidth}px)`;
+  if(index>=cards.length){
+    setTimeout(()=>{track.style.transition='none'; track.style.transform='translateX(0)'; index=0;},510);
+  }
+}
+setInterval(moveCarousel,3000);
 
-function moveCarousel(){index++; track.style.transition='transform 0.5s linear'; track.style.transform=`translateX(-${index*cardWidth}px)`; if(index>=cards.length/2){setTimeout(()=>{track.style.transition='none'; track.style.transform='translateX(0)'; index=0;},510);}}
-let slideInterval=setInterval(moveCarousel,3000);
-
-// Touch support
-let startX=null;
-track.addEventListener('touchstart',e=>{startX=e.touches[0].clientX; clearInterval(slideInterval);});
-track.addEventListener('touchmove',e=>{
-  if(!startX) return;
-  const deltaX=e.touches[0].clientX-startX;
-  track.style.transform=`translateX(${-index*cardWidth+deltaX}px)`;
-});
-track.addEventListener('touchend',e=>{startX=null; slideInterval=setInterval(moveCarousel,3000);});
-
-// SCROLL TRIGGERED ANIMATIONS
-const faders=document.querySelectorAll('.feature-card, .why-creators');
+// SCROLL ANIMATIONS
+const faders=document.querySelectorAll('.feature-card,.why-creators');
 const appearOptions={threshold:0.2};
 const appearOnScroll=new IntersectionObserver(function(entries,observer){
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.style.opacity=1;
-      entry.target.style.transform='translateY(0)';
-      observer.unobserve(entry.target);
-    }
-  });
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity=1; entry.target.style.transform='translateY(0)'; observer.unobserve(entry.target);}});
 },appearOptions);
 faders.forEach(fader=>appearOnScroll.observe(fader));
 
@@ -321,4 +188,3 @@ window.addEventListener('load',()=>document.querySelector('.sticky-demo-btn').cl
 </script>
 </body>
 </html>
-
