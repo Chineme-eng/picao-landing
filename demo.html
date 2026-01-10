@@ -61,6 +61,7 @@
 
     let selectedMode = "Caption";
 
+    // Mode selection
     modeButtons.forEach(btn => {
       btn.addEventListener("click", () => {
         modeButtons.forEach(b => b.classList.remove("active"));
@@ -69,18 +70,20 @@
       });
     });
 
+    // Add messages to chat box
     function addMessage(text, sender) {
       const div = document.createElement("div");
-      div.classList.add("message");
-      div.classList.add(sender);
+      div.classList.add("message", sender);
       div.innerText = text;
       chatBox.appendChild(div);
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
+    // Send message to backend
     async function sendMessage() {
       const message = userInput.value.trim();
       if (!message) return;
+
       addMessage("You: " + message, "user");
       userInput.value = "";
 
@@ -90,14 +93,17 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message: `${message} [Mode: ${selectedMode}]` })
         });
+
         const data = await response.json();
         addMessage("Picao AI: " + data.reply, "ai");
+
       } catch (err) {
         console.error(err);
         addMessage("Error: Could not get response", "ai");
       }
     }
 
+    // Event listeners
     sendBtn.addEventListener("click", sendMessage);
     userInput.addEventListener("keypress", e => {
       if (e.key === "Enter") sendMessage();
@@ -106,3 +112,4 @@
 
 </body>
 </html>
+
