@@ -8,142 +8,142 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --picao-blue: #3b82f6; --picao-purple: #8b5cf6; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030303; color: #ffffff; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #ffffff; overflow-x: hidden; }
         
-        /* Interactive Background Glow */
-        .glow-mesh {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05), transparent 70%);
-            z-index: -1;
+        /* Logo Pulse & Entrance */
+        @keyframes logo-entrance {
+            0% { transform: scale(0); opacity: 0; filter: blur(20px); }
+            100% { transform: scale(1); opacity: 1; filter: blur(0px); }
+        }
+        .logo-zone { 
+            animation: logo-entrance 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
         }
 
-        /* Logo Animation */
-        @keyframes logo-reveal {
-            0% { transform: scale(0.8) rotate(-10deg); opacity: 0; filter: blur(10px); }
-            100% { transform: scale(1) rotate(0deg); opacity: 1; filter: blur(0px); }
-        }
-        .animate-logo { animation: logo-reveal 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
-
-        /* Floating Animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-        .float-effect { animation: float 5s ease-in-out infinite; }
-
-        /* Mouse Hover Light/Dark Switch Effect */
-        .interactive-card {
+        /* Hover Inversion Effect */
+        .stat-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.5s ease;
+            transition: all 0.4s ease;
         }
-        .interactive-card:hover {
-            background: rgba(255, 255, 255, 0.95); /* Swaps to Light Mode on Hover */
+        .stat-card:hover {
+            background: #ffffff;
             color: #000;
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transform: translateY(-10px);
         }
-        .interactive-card:hover p, .interactive-card:hover h3 { color: #000; }
-        .interactive-card:hover .icon-box { background: #3b82f6; color: #fff; }
+        .stat-card:hover .stat-text { color: #1e40af; }
 
-        .glass-nav { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
-        .thank-you-hidden { display: none; }
+        /* Product Preview Glass Frame */
+        .preview-frame {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.5);
+        }
+
+        /* Floating Text */
+        .float { animation: floating 6s ease-in-out infinite; }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .glass-nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); }
     </style>
 </head>
 <body>
 
-    <div class="glow-mesh"></div>
-
     <nav class="fixed w-full z-50 top-0 glass-nav">
         <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-            <div class="flex items-center gap-3 animate-logo">
-                <img src="https://i.ibb.co/XrnZpGg/Picao-Logo.png" alt="Picao Logo" class="w-10 h-10 hover:rotate-12 transition-transform duration-500">
-                <span class="text-xl font-bold tracking-tighter text-white">Picao AI</span>
+            <div class="flex items-center gap-3">
+                <img src="https://i.ibb.co/XrnZpGg/Picao-Logo.png" alt="Picao" class="w-8 h-8">
+                <span class="font-bold tracking-tighter text-lg uppercase">Picao AI</span>
             </div>
-            <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-300">
-                <a href="#about" class="hover:text-white transition">About</a>
-                <a href="#vision" class="hover:text-white transition">Mission</a>
-                <a href="#faq" class="hover:text-white transition">FAQ</a>
+            <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-gray-400">
+                <a href="#vision" class="hover:text-white transition">The Vision</a>
+                <a href="#preview" class="hover:text-white transition">Product</a>
+                <a href="#market" class="hover:text-white transition">Market</a>
             </div>
-            <button onclick="document.getElementById('newsletter').scrollIntoView()" class="bg-white text-black px-6 py-2.5 rounded-full font-bold text-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition">Request Demo</button>
+            <button class="bg-blue-600 px-6 py-2 rounded-full font-bold text-sm hover:bg-blue-500 transition">Request Demo</button>
         </div>
     </nav>
 
-    <section class="pt-52 pb-32 px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-7xl md:text-9xl font-extrabold tracking-tighter mb-8 leading-none float-effect">
-                Create <br><span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500">Without Limits.</span>
-            </h1>
-            <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-                Picao AI is the all-in-one workspace designed to solve the chaos of fragmented creator tools. Ideate, create, and launch in one unified flow.
-            </p>
+    <section class="min-h-screen flex flex-col items-center justify-center px-6 pt-20">
+        <div class="logo-zone w-48 h-48 rounded-full flex items-center justify-center mb-8 relative">
+            <img src="https://i.ibb.co/XrnZpGg/Picao-Logo.png" class="w-32 h-32 relative z-10 float" alt="Picao Centerpiece">
+            <div class="absolute inset-0 bg-blue-500 blur-[80px] opacity-20"></div>
+        </div>
+        <h1 class="text-6xl md:text-9xl font-black tracking-tighter text-center mb-6 leading-none">
+            IDEATE. <span class="text-blue-500">CREATE.</span><br>LAUNCH.
+        </h1>
+        <p class="text-gray-400 text-center max-w-xl text-lg mb-10">
+            The all-in-one AI platform helping creators move 75% faster by unifying fragmented workflows into one workspace.
+        </p>
+        <div class="flex gap-4">
+            <a href="#newsletter" class="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition">Join the Waitlist</a>
+            <a href="#preview" class="glass-nav px-8 py-4 rounded-2xl font-bold hover:bg-white/5 transition">Watch Preview</a>
         </div>
     </section>
 
-    <section id="vision" class="max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="interactive-card p-10 rounded-[2.5rem]">
-            <div class="icon-box w-12 h-12 rounded-xl flex items-center justify-center bg-white/5 mb-6 transition">
-                <i data-lucide="frown" class="w-6 h-6"></i>
+    <section id="preview" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-blue-500 font-bold tracking-widest uppercase text-xs">Inside Picao OS</span>
+                <h2 class="text-4xl md:text-6xl font-bold mt-4">One Workspace, Every Tool.</h2>
             </div>
-            <h3 class="text-2xl font-bold mb-4">The Problem</h3>
-            <p class="text-gray-400 leading-relaxed">Fragmented tools and constant context switching kill creativity. Creators spend 65% of their time on admin, not building.</p>
-        </div>
-        <div class="interactive-card p-10 rounded-[2.5rem]">
-            <div class="icon-box w-12 h-12 rounded-xl flex items-center justify-center bg-white/5 mb-6 transition">
-                <i data-lucide="zap" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-2xl font-bold mb-4">The Solution</h3>
-            <p class="text-gray-400 leading-relaxed">A unified workspace that combines AI automation with data-driven creative research. One tool, every result.</p>
-        </div>
-        <div class="interactive-card p-10 rounded-[2.5rem]">
-            <div class="icon-box w-12 h-12 rounded-xl flex items-center justify-center bg-white/5 mb-6 transition">
-                <i data-lucide="target" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-2xl font-bold mb-4">Our Mission</h3>
-            <p class="text-gray-400 leading-relaxed">Empowering 1 million builders to automate the tedious and focus on the innovative. We are the OS for the Creator Economy.</p>
-        </div>
-    </section>
-
-    <section id="newsletter" class="max-w-7xl mx-auto px-6 py-32">
-        <div class="relative glass-card p-12 md:p-24 rounded-[4rem] text-center overflow-hidden border-blue-500/20">
-            <div id="form-container">
-                <h2 class="text-5xl font-bold mb-6">Join the 2026 Cohort</h2>
-                <p class="text-gray-400 mb-12 max-w-lg mx-auto">Get exclusive early access to the Picao AI workspace and founder updates.</p>
-                <form id="waitlistForm" class="flex flex-col md:flex-row gap-4 max-w-xl mx-auto" onsubmit="handleForm(event)">
-                    <input type="email" required placeholder="Enter your email" class="bg-white/5 border border-white/10 px-6 py-4 rounded-2xl flex-1 text-white focus:border-blue-500 outline-none">
-                    <button type="submit" class="bg-blue-600 hover:bg-blue-500 px-10 py-4 rounded-2xl font-bold transition transform hover:scale-105">Request Demo</button>
-                </form>
-            </div>
-
-            <div id="thank-you" class="thank-you-hidden animate-logo">
-                <div class="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i data-lucide="check" class="w-10 h-10"></i>
+            <div class="preview-frame rounded-[3rem] p-4 md:p-8 relative overflow-hidden group">
+                <div class="bg-slate-900 aspect-video rounded-[2rem] flex items-center justify-center border border-white/5 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" alt="Dashboard Preview">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <button class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition">
+                            <i data-lucide="play" class="fill-white w-8 h-8"></i>
+                        </button>
+                    </div>
                 </div>
-                <h2 class="text-5xl font-bold mb-4">You're on the list!</h2>
-                <p class="text-gray-400 text-lg">Check your inbox. We'll be reaching out shortly to schedule your personalized demo of Picao AI.</p>
-                <button onclick="location.reload()" class="mt-8 text-blue-500 font-bold hover:underline">Back to home</button>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 border-t border-white/5 text-center">
-        <div class="text-gray-500 text-xs mb-4">© 2026 Picao AI. All Rights Reserved.</div>
-        <div class="flex justify-center gap-6 text-gray-400 text-sm">
-            <a href="#" class="hover:text-white transition">Twitter</a>
-            <a href="#" class="hover:text-white transition">GitHub</a>
-            <a href="#" class="hover:text-white transition">Docs</a>
+    <section id="market" class="py-32 bg-white text-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="text-5xl font-black tracking-tight mb-8">The $342B Creator Opportunity.</h2>
+                    <p class="text-gray-600 text-xl leading-relaxed mb-8">
+                        The world is moving to a builder-first economy. But creators are drowning in "Context Switching"—jumping between 10+ apps just to post one piece of content.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex gap-4 items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold">1</div>
+                            <p class="font-bold">Fragmented Tools (The Problem)</p>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold">2</div>
+                            <p class="font-bold">Unified Intelligence (The Picao Solution)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="stat-card p-10 rounded-[2rem]">
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Efficiency Gain</h4>
+                        <div class="text-6xl font-black stat-text">75%</div>
+                        <p class="mt-4 opacity-70">Reduction in repetitive administrative tasks for content creators.</p>
+                    </div>
+                    <div class="stat-card p-10 rounded-[2rem]">
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Market Reach</h4>
+                        <div class="text-6xl font-black stat-text">1M+</div>
+                        <p class="mt-4 opacity-70">Targeted creators in our first 24 months of deployment.</p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
+
+    <footer class="py-20 px-6 border-t border-white/5 text-center">
+        <p class="text-gray-500 text-xs tracking-[0.3em] uppercase">© 2026 Picao AI • All Rights Reserved</p>
     </footer>
 
     <script>
         lucide.createIcons();
-
-        function handleForm(e) {
-            e.preventDefault();
-            document.getElementById('form-container').classList.add('thank-you-hidden');
-            document.getElementById('thank-you').classList.remove('thank-you-hidden');
-        }
     </script>
 </body>
 </html>
