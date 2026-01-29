@@ -1,197 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Picao — Assistant for Creators</title>
-<style>
-/* ===== GLOBAL ===== */
-body { margin:0; font-family:'Segoe UI',Arial,sans-serif; background:#fff; color:#000; scroll-behavior:smooth; overflow-x:hidden; }
-a { text-decoration:none; color:inherit; }
-.container { max-width:1200px; margin:auto; padding:0 20px; }
-h1,h2,h3 { margin:0 0 20px; color:#000; }
-
-/* ===== NAVBAR ===== */
-.navbar { position:sticky; top:0; width:100%; background:#fff; display:flex; justify-content:center; padding:15px 0; z-index:999; box-shadow:0 2px 10px rgba(0,0,0,0.1);}
-.navbar a { color:#007BFF; margin:0 20px; font-weight:bold; transition:0.2s;}
-.navbar a:hover { color:#0056b3; }
-
-/* ===== HERO ===== */
-.hero { text-align:center; padding:120px 20px 80px; }
-.hero h1 { font-size:3em; line-height:1.2; }
-.hero p { font-size:1.2em; margin-bottom:30px; }
-
-/* ===== JOIN SECTION ===== */
-.join-section { background:linear-gradient(135deg, #4A90E2, #6BA8F1); color:#000; text-align:center; padding:80px 20px; border-radius:12px; margin-bottom:40px; position:relative; }
-.join-section h2 { color:#000; margin-bottom:20px; }
-.join-section .waitlist-note { margin-top:15px; color:#000; font-weight:bold; }
-.join-section form { margin-top:20px; }
-.join-section input { padding:12px; border-radius:6px; border:none; font-size:1em; width:250px; margin-right:10px; }
-.join-section button { padding:15px; border-radius:50%; border:none; background:#007BFF; color:#fff; font-weight:bold; cursor:pointer; animation: float 2s ease-in-out infinite; transition: transform 0.3s, box-shadow 0.3s; }
-.join-section button:hover { transform:translateY(-5px) scale(1.1); box-shadow:0 8px 25px rgba(0,0,0,0.2); }
-@keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
-
-/* ===== DEMO LINK ===== */
-.demo-section { text-align:center; padding:60px 20px; margin-bottom:40px; }
-.demo-section a { display:inline-block; padding:15px 30px; border-radius:12px; background:#007BFF; color:#fff; font-weight:bold; transition:0.3s; }
-.demo-section a:hover { background:#0056b3; transform:translateY(-5px); box-shadow:0 8px 25px rgba(0,0,0,0.2); }
-
-/* ===== FEATURES CAROUSEL ===== */
-.carousel-container { overflow:hidden; position:relative; margin:0 auto; max-width:1000px; cursor:grab; }
-.carousel-track { display:flex; transition:transform 0.5s linear; }
-.feature-card { min-width:250px; margin:0 20px; background:#f8f8f8; border-radius:12px; padding:40px 20px; text-align:center; flex-shrink:0; transition: transform 0.3s, box-shadow 0.3s; }
-.feature-card:hover { transform:translateY(-10px); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
-
-/* ===== STRUGGLES SECTION ===== */
-.struggles { text-align:center; padding:80px 20px; margin-bottom:40px; }
-.struggles h2 { margin-bottom:40px; }
-.struggle-cards { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
-.struggle-card { background:#f8f8f8; padding:30px 20px; border-radius:12px; flex:1 1 200px; max-width:250px; text-align:center; transition: transform 0.3s, box-shadow 0.3s; }
-.struggle-card:hover { transform:translateY(-8px); box-shadow:0 8px 20px rgba(0,0,0,0.15); }
-
-/* ===== FOOTER ===== */
-footer { text-align:center; padding:40px 20px; font-size:0.9em; color:#444; margin-top:60px; }
-footer a { color:#007BFF; margin:0 10px; }
-
-/* ===== STICKY DEMO BUTTON ===== */
-.sticky-demo-btn { position:fixed; bottom:30px; right:30px; background:#007BFF; color:#fff; padding:15px 25px; border-radius:50px; font-weight:bold; text-decoration:none; z-index:1000; transform:translateY(100px); opacity:0; transition:transform 0.5s, opacity 0.5s, background 0.3s;}
-.sticky-demo-btn.show { transform:translateY(0); opacity:1; }
-.sticky-demo-btn:hover { background:#0056b3; transform:translateY(-5px); box-shadow:0 8px 25px rgba(0,0,0,0.2); }
-
-@media(max-width:768px){
-  .struggle-cards{flex-direction:column;}
-  .feature-card{min-width:200px; margin:0 10px;}
-  .join-section input{width:70%; margin-bottom:10px;}
-  .join-section button{width:60px;height:60px;}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picao AI | Automated Creative Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #000000; 
+            color: #ffffff; 
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% -20%, #1e3a8a 0%, transparent 50%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        /* Custom scrollbar to match dark theme */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
+    </style>
 </head>
-<body>
+<body class="hero-gradient min-h-screen">
 
-<!-- NAV -->
-<div class="navbar">
-  <a href="#features">Features</a>
-  <a href="#struggles">Challenges</a>
-  <a href="#demo">Demo</a>
-</div>
+    <nav class="fixed w-full z-50 top-0 border-b border-white/5 bg-black/50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+            <div class="text-xl font-bold tracking-tight flex items-center gap-2">
+                <div class="w-6 h-6 bg-white rounded-md flex items-center justify-center">
+                    <div class="w-2 h-2 bg-black rounded-full"></div>
+                </div>
+                Picao AI
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+                <a href="#features" class="hover:text-white transition">Capabilities</a>
+                <a href="#solutions" class="hover:text-white transition">Solutions</a>
+                <a href="https://github.com" class="hover:text-white transition">Docs</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#" class="text-sm font-medium hover:text-gray-300">Log in</a>
+                <a href="#waitlist" class="btn-primary px-5 py-2 rounded-lg font-bold text-sm">Deploy Now</a>
+            </div>
+        </div>
+    </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Picao — Assistant for Creators</h1>
-  <p>Focus on what matters. Picao helps you save time generating ideas, captions, and visuals instantly.</p>
-</section>
+    <section class="pt-48 pb-24 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-gray-300 mb-8">
+                <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                Now in Private Beta for Creators
+            </div>
+            <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-8 leading-[1.1]">
+                Replace manual work with <br><span class="text-gray-500">automated intelligence.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+                Picao AI finds the right creative angles, fills in the content gaps, and helps builders launch workflows that scale.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <button class="btn-primary px-8 py-4 rounded-xl font-bold text-lg">Request access</button>
+                <button class="glass-card px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/5">Read customer stories</button>
+            </div>
+        </div>
+    </section>
 
-<!-- JOIN EARLY ADAPTERS -->
-<section class="join-section" id="early-access">
-  <h2>Join Early Adapters</h2>
-  <form id="earlyAccessForm">
-    <input type="email" id="userEmail" placeholder="Enter your email" required />
-    <button type="submit">→</button>
-  </form>
-  <div class="waitlist-note">Picao AI currently has a waitlist of early users eager to test the platform. Enter your email below to join!</div>
-</section>
+    <section class="max-w-7xl mx-auto px-6 py-12 border-y border-white/5">
+        <p class="text-center text-xs font-bold uppercase tracking-widest text-gray-500 mb-8">Powers creative teams at</p>
+        <div class="flex flex-wrap justify-center gap-12 grayscale opacity-50">
+            <span class="text-2xl font-bold tracking-tighter">CREATOR.CO</span>
+            <span class="text-2xl font-bold tracking-tighter">BUILDER.AI</span>
+            <span class="text-2xl font-bold tracking-tighter">IMPACT.WEB</span>
+            <span class="text-2xl font-bold tracking-tighter">STUDIO.64</span>
+        </div>
+    </section>
 
-<!-- DEMO LINK -->
-<section class="demo-section" id="demo">
-  <h2>Try out the Demo</h2>
-  <a href="https://picaoai.com/demo.html" target="_blank">Go to Demo</a>
-</section>
+    <section id="features" class="max-w-7xl mx-auto px-6 py-32">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div class="md:col-span-8 glass-card p-10 rounded-3xl">
+                <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+                    <i data-lucide="brain-circuit" class="text-blue-500"></i>
+                </div>
+                <h3 class="text-3xl font-bold mb-4">Deep Creative Intelligence</h3>
+                <p class="text-gray-400 text-lg">Our AI doesn't just "generate"—it researches. Picao analyzes your niche, competitors, and trends to build a custom intelligence agent for your brand.</p>
+                <div class="mt-8 pt-8 border-t border-white/5 flex gap-12">
+                    <div>
+                        <div class="text-2xl font-bold">10x</div>
+                        <div class="text-xs text-gray-500 uppercase">Faster Ideation</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold">100%</div>
+                        <div class="text-xs text-gray-500 uppercase">Brand Aligned</div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-4 glass-card p-10 rounded-3xl">
+                <i data-lucide="zap" class="text-yellow-500 mb-6 w-10 h-10"></i>
+                <h3 class="text-2xl font-bold mb-4">Instant Deployment</h3>
+                <p class="text-gray-400">Turn your ideas into live campaigns across sales, research, and social in one click.</p>
+            </div>
+        </div>
+    </section>
 
-<!-- FEATURES SECTION -->
-<section class="container" id="features">
-  <h2 style="text-align:center; margin-bottom:40px;">Features</h2>
-  <div class="carousel-container" id="carouselContainer">
-    <div class="carousel-track" id="carouselTrack">
-      <div class="feature-card"><h3>Instant Captions</h3><p>Generate captions in seconds.</p></div>
-      <div class="feature-card"><h3>Visual Concepts</h3><p>Quickly turn ideas into visuals.</p></div>
-      <div class="feature-card"><h3>Idea Brainstorm</h3><p>Spark new creative project ideas.</p></div>
-      <div class="feature-card"><h3>Marketing Prompts</h3><p>Create social media & ad prompts effortlessly.</p></div>
-    </div>
-  </div>
-</section>
+    <section id="waitlist" class="max-w-7xl mx-auto px-6 py-32">
+        <div class="glass-card p-16 rounded-[4rem] text-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-blue-600/5 -z-10"></div>
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Ready to automate your creation?</h2>
+            <p class="text-gray-400 mb-10 text-lg max-w-xl mx-auto">Join the waitlist to get your custom Picao agent and start building smarter.</p>
+            <div class="flex flex-col md:flex-row gap-3 max-w-md mx-auto">
+                <input type="email" placeholder="Work email" class="flex-1 bg-white/5 border border-white/10 px-5 py-3 rounded-lg focus:outline-none focus:border-white transition">
+                <button class="btn-primary px-6 py-3 rounded-lg font-bold">Talk to us</button>
+            </div>
+        </div>
+    </section>
 
-<!-- STRUGGLES SECTION -->
-<section class="struggles" id="struggles">
-  <h2>Multiple tools slow down your workflow</h2>
-  <div class="struggle-cards">
-    <div class="struggle-card"><h3>Switching apps</h3><p>Wasting time moving between multiple platforms.</p></div>
-    <div class="struggle-card"><h3>Repetitive tasks</h3><p>Spending hours on content you could automate.</p></div>
-    <div class="struggle-card"><h3>Disjointed ideas</h3><p>Brainstorming is scattered across tools.</p></div>
-    <div class="struggle-card"><h3>Inconsistent branding</h3><p>Maintaining a cohesive look across outputs is hard.</p></div>
-  </div>
-</section>
+    <footer class="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
+        <div class="flex flex-col md:flex-row justify-between gap-10">
+            <div>
+                <div class="text-lg font-bold mb-4">Picao AI</div>
+                <p class="text-sm text-gray-500 max-w-xs">Building the research backbone for the world's most ambitious creators.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest mb-4">Product</h4>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><a href="#" class="hover:text-white">Agents</a></li>
+                        <li><a href="#" class="hover:text-white">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white">Security</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest mb-4">Company</h4>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 Picao. All rights reserved.</p>
-  <p><a href="#demo">Demo</a> | <a href="https://github.com/your-username/picao-vercel-backend">GitHub</a> | <a href="mailto:founder@picaoai.com">Contact</a></p>
-</footer>
-
-<!-- STICKY DEMO BUTTON -->
-<a href="#demo" class="sticky-demo-btn">Try Demo</a>
-
-<script>
-// EARLY ACCESS FORM
-const form=document.getElementById('earlyAccessForm');
-const emailInput=document.getElementById('userEmail');
-form.addEventListener('submit',function(e){
-  e.preventDefault();
-  const email=emailInput.value.trim();
-  if(!email) return;
-  const formId='1FAIpQLSfvy2ZL9P3bcFx24ck1W3hi0Q_8jG3-U-02AqEN09d_rLUSVA';
-  const entryId='entry.505288260';
-  const data=new FormData();
-  data.append(entryId,email);
-  fetch(`https://docs.google.com/forms/d/e/${1FAIpQLSfvy2ZL9P3bcFx24ck1W3hi0Q_8jG3-U-02AqEN09d_rLUSVA}/formResponse`,{method:'POST',mode:'no-cors',body:data})
-    .then(()=>{emailInput.value='';})
-    .catch(()=>{alert("Oops! Something went wrong.")});
-});
-
-// INFINITE SEAMLESS FEATURES CAROUSEL WITH SWIPE/DRAG
-const track=document.getElementById('carouselTrack');
-const carouselContainer=document.getElementById('carouselContainer');
-let cards=[...track.children];
-cards.forEach(card => track.appendChild(card.cloneNode(true))); // duplicate for seamless scroll
-let cardWidth=cards[0].offsetWidth+40;
-let index=0;
-
-// AUTO SCROLL
-function autoScroll(){
-  index++;
-  track.style.transition='transform 0.5s linear';
-  track.style.transform=`translateX(-${index*cardWidth}px)`;
-  if(index>=cards.length){ 
-    setTimeout(()=>{ track.style.transition='none'; track.style.transform='translateX(0)'; index=0; },510);
-  }
-}
-let autoScrollInterval=setInterval(autoScroll,3000);
-
-// DRAG & SWIPE SUPPORT
-let isDown=false,startX,scrollX;
-carouselContainer.addEventListener('mousedown', e => { isDown=true; startX=e.pageX; scrollX=index*cardWidth; track.style.transition='none'; });
-carouselContainer.addEventListener('mouseleave',()=>{isDown=false;});
-carouselContainer.addEventListener('mouseup',()=>{isDown=false;});
-carouselContainer.addEventListener('mousemove', e => {
-  if(!isDown) return;
-  const walk=e.pageX-startX;
-  track.style.transform=`translateX(-${scrollX-walk}px)`;
-});
-
-// TOUCH EVENTS
-carouselContainer.addEventListener('touchstart', e => { startX=e.touches[0].pageX; scrollX=index*cardWidth; track.style.transition='none'; });
-carouselContainer.addEventListener('touchmove', e => { 
-  const walk=e.touches[0].pageX - startX;
-  track.style.transform=`translateX(-${scrollX-walk}px)`;
-});
-carouselContainer.addEventListener('touchend', e => { 
-  // snap to nearest card
-  let movedX=parseInt(track.style.transform.replace('translateX(','').replace('px)','')) || 0;
-  index=Math.round(movedX/cardWidth)*-1;
-});
-
-// SHOW STICKY BUTTON
-window.addEventListener('load',()=>document.querySelector('.sticky-demo-btn').classList.add('show'));
-window.addEventListener('resize',()=>{cardWidth=cards[0].offsetWidth+40;}); // recalc width on resize
-</script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>
