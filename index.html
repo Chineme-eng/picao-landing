@@ -13,6 +13,7 @@
 
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--text); transition: all 0.5s ease; overflow-x: hidden; }
         
+        /* WARM CURSOR GLOW */
         #cursor-glow {
             position: fixed; top: 0; left: 0; width: 600px; height: 600px;
             background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
@@ -23,11 +24,25 @@
         .glass-card { background: var(--card); backdrop-filter: blur(12px); border: 1px solid var(--border); transition: all 0.4s ease; }
         .glass-card:hover { border-color: var(--accent); transform: scale(1.02); }
 
+        /* BRAND COLORS FOR TICKER */
+        .icon-tiktok { color: #ff0050; }
+        .icon-instagram { color: #e1306c; }
+        .icon-youtube { color: #ff0000; }
+        .icon-twitter { color: #1da1f2; }
+        .icon-threads { color: #ffffff; } 
+        .icon-facebook { color: #1877f2; }
+        .icon-linkedin { color: #0a66c2; }
+
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .ticker-container { overflow: hidden; white-space: nowrap; width: 100%; position: relative; padding: 60px 0; background: var(--card); }
-        .ticker-track { display: inline-flex; animation: scroll 30s linear infinite; }
-        .platform-tag { padding: 20px 50px; margin-right: 30px; border-radius: 99px; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 20px; border: 2px solid var(--border); background: var(--bg); }
-        .platform-tag i { transform: scale(1.5); color: var(--accent); }
+        .ticker-track { display: inline-flex; animation: scroll 40s linear infinite; }
+        
+        .platform-tag { 
+            padding: 20px 50px; margin-right: 30px; border-radius: 99px; font-weight: 800; font-size: 1.2rem; 
+            display: flex; align-items: center; gap: 20px; border: 2px solid var(--border); background: var(--bg); transition: all 0.3s ease;
+        }
+        .platform-tag i { transform: scale(1.5); }
+        .platform-tag:hover { border-color: currentColor !important; box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }
 
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         .floating { animation: float 5s ease-in-out infinite; }
@@ -47,23 +62,22 @@
                 <button onclick="toggleTheme()" class="p-2.5 glass-card rounded-xl hover:scale-110 transition">
                     <i id="theme-icon" data-lucide="sun" class="w-5 h-5"></i>
                 </button>
-                <a href="demo.html" class="bg-blue-600 text-white px-7 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition">Launch Demo</a>
+                <a href="demo.html" class="bg-blue-600 text-white px-7 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition shadow-lg">Launch Demo</a>
             </div>
         </div>
     </nav>
 
-<section class="min-h-screen flex flex-col items-center justify-center pt-32 px-6 text-center">
+    <section class="min-h-screen flex flex-col items-center justify-center pt-32 px-6 text-center">
         <div class="mb-12 flex flex-col items-center">
             <span class="text-[10px] font-black uppercase tracking-[0.3em] opacity-40 mb-3">Release Roadmap: March 2026</span>
-            <div class="w-64 h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="w-[65%] h-full bg-blue-600 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.3)]"></div></div>
+            <div class="w-64 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                <div class="w-[65%] h-full bg-blue-600 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.3)]"></div>
+            </div>
         </div>
 
-        <div class="mb-10 perspective-1000">
-            <div class="relative w-64 h-64 glass-card rounded-[2.5rem] overflow-hidden floating shadow-2xl transition-all duration-700 hover:rotate-0 hover:scale-110 group" 
-                 style="transform: rotateY(-15deg) rotateX(10deg) rotateZ(-2deg); border: 1px solid rgba(255,255,255,0.15);">
-                
-                <div class="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                
+        <div class="mb-10" style="perspective: 1000px;">
+            <div class="relative w-64 h-64 glass-card rounded-[2.5rem] overflow-hidden floating shadow-2xl transition-all duration-700 hover:rotate-0 hover:scale-110 group mx-auto" 
+                 style="transform: rotateY(-15deg) rotateX(10deg) rotateZ(-2deg); border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.02); backdrop-filter: blur(10px);">
                 <video autoplay loop muted playsinline class="w-full h-full object-cover">
                     <source src="Picao-Logo-Animation.mp4" type="video/mp4">
                 </video>
@@ -72,38 +86,48 @@
         </div>
 
         <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight mb-8">Voice to <span id="typewriter" class="text-blue-500"></span></h1>
-        <p class="opacity-50 max-w-2xl text-lg md:text-xl mb-12 font-medium">One voice memo. 10+ social assets. Zero administrative lag.</p>
+        <p class="opacity-50 max-w-2xl text-lg md:text-xl mb-12 font-medium leading-relaxed">
+            One voice memo. 10+ social assets. <br>Zero administrative lag.
+        </p>
         
         <a href="demo.html" class="bg-white text-black px-12 py-5 rounded-full font-black text-xs uppercase tracking-widest hover:bg-blue-600 hover:text-white transition shadow-2xl">
-            Launch Interactive Dashboard
+            Launch Interactive Terminal
         </a>
     </section>
 
-<div class="ticker-container border-y border-white/5">
+    <div class="ticker-container border-y border-white/5">
         <div class="ticker-track">
-            <div class="platform-tag"><i data-lucide="video"></i> TikTok</div>
-            <div class="platform-tag"><i data-lucide="instagram"></i> Instagram</div>
-            <div class="platform-tag"><i data-lucide="youtube"></i> Shorts</div>
-            <div class="platform-tag"><i data-lucide="twitter"></i> X / Twitter</div>
-            <div class="platform-tag"><i data-lucide="at-sign"></i> Threads</div>
-            <div class="platform-tag"><i data-lucide="facebook"></i> Facebook</div>
-            <div class="platform-tag"><i data-lucide="linkedin"></i> LinkedIn</div>
-            
-            <div class="platform-tag"><i data-lucide="video"></i> TikTok</div>
-            <div class="platform-tag"><i data-lucide="instagram"></i> Instagram</div>
-            <div class="platform-tag"><i data-lucide="youtube"></i> Shorts</div>
-            <div class="platform-tag"><i data-lucide="twitter"></i> X / Twitter</div>
-            <div class="platform-tag"><i data-lucide="at-sign"></i> Threads</div>
-            <div class="platform-tag"><i data-lucide="facebook"></i> Facebook</div>
-            <div class="platform-tag"><i data-lucide="linkedin"></i> LinkedIn</div>
+            <div class="platform-tag"><i data-lucide="video" class="icon-tiktok"></i> TikTok</div>
+            <div class="platform-tag"><i data-lucide="instagram" class="icon-instagram"></i> Instagram</div>
+            <div class="platform-tag"><i data-lucide="youtube" class="icon-youtube"></i> Shorts</div>
+            <div class="platform-tag"><i data-lucide="twitter" class="icon-twitter"></i> X / Twitter</div>
+            <div class="platform-tag"><i data-lucide="at-sign" class="icon-threads"></i> Threads</div>
+            <div class="platform-tag"><i data-lucide="facebook" class="icon-facebook"></i> Facebook</div>
+            <div class="platform-tag"><i data-lucide="linkedin" class="icon-linkedin"></i> LinkedIn</div>
+            <div class="platform-tag"><i data-lucide="video" class="icon-tiktok"></i> TikTok</div>
+            <div class="platform-tag"><i data-lucide="instagram" class="icon-instagram"></i> Instagram</div>
+            <div class="platform-tag"><i data-lucide="youtube" class="icon-youtube"></i> Shorts</div>
+            <div class="platform-tag"><i data-lucide="twitter" class="icon-twitter"></i> X / Twitter</div>
+            <div class="platform-tag"><i data-lucide="at-sign" class="icon-threads"></i> Threads</div>
+            <div class="platform-tag"><i data-lucide="facebook" class="icon-facebook"></i> Facebook</div>
+            <div class="platform-tag"><i data-lucide="linkedin" class="icon-linkedin"></i> LinkedIn</div>
         </div>
     </div>
 
     <section class="py-32 px-6 max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div class="glass-card p-12 rounded-[2.5rem]"><div class="text-7xl font-black mb-3">75%</div><p class="text-[10px] uppercase font-black opacity-40">Efficiency Gain</p></div>
-            <div class="glass-card p-12 rounded-[2.5rem]"><div class="text-7xl font-black mb-3">4x</div><p class="text-[10px] uppercase font-black opacity-40">Output Velocity</p></div>
-            <div class="glass-card p-12 rounded-[2.5rem]"><div class="text-7xl font-black mb-3">$342B</div><p class="text-[10px] uppercase font-black opacity-40">Market Scale</p></div>
+            <div class="glass-card p-12 rounded-[3rem] text-center transition-transform hover:scale-105">
+                <div class="text-7xl font-black mb-3">75%</div>
+                <p class="text-[10px] uppercase font-black opacity-40 tracking-[0.2em]">Efficiency Gain</p>
+            </div>
+            <div class="glass-card p-12 rounded-[3rem] text-center transition-transform hover:scale-105">
+                <div class="text-7xl font-black mb-3">4x</div>
+                <p class="text-[10px] uppercase font-black opacity-40 tracking-[0.2em]">Output Velocity</p>
+            </div>
+            <div class="glass-card p-12 rounded-[3rem] text-center transition-transform hover:scale-105">
+                <div class="text-7xl font-black mb-3">$342B</div>
+                <p class="text-[10px] uppercase font-black opacity-40 tracking-[0.2em]">Market Potential</p>
+            </div>
         </div>
     </section>
 
@@ -112,46 +136,54 @@
         <div class="space-y-4">
             <div class="glass-card p-8 rounded-2xl">
                 <h4 class="font-bold text-lg mb-3">Is Picao a simple AI wrapper?</h4>
-                <p class="opacity-50 text-sm">No. We manage the entire thought lifecycle—from voice to production assets.</p>
+                <p class="opacity-50 text-sm leading-relaxed">No. We manage the entire thought lifecycle—from voice transcription to script mapping and production-ready assets.</p>
             </div>
             <div class="glass-card p-8 rounded-2xl">
                 <h4 class="font-bold text-lg mb-3">Why wait until March?</h4>
-                <p class="opacity-50 text-sm">We're perfecting our proprietary engine to ensure quality over speed.</p>
+                <p class="opacity-50 text-sm leading-relaxed">We're perfecting our proprietary engine to ensure that every voice memo generates high-retention, algorithm-ready content.</p>
             </div>
             <div class="glass-card p-8 rounded-2xl">
                 <h4 class="font-bold text-lg mb-3">Can I export directly to social apps?</h4>
-                <p class="opacity-50 text-sm">We are currently building direct API integrations for one-click publishing by Q2 2026.</p>
+                <p class="opacity-50 text-sm leading-relaxed">We are currently building direct API integrations for one-click publishing to TikTok and Instagram by Q2 2026.</p>
             </div>
         </div>
     </section>
 
-    <section class="py-40 px-6 bg-blue-600/5">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-5xl font-black mb-8 italic">Ready to see the magic?</h2>
-            <p class="text-slate-400 mb-12">Skip the waitlist and experience the Picao Intelligence Terminal right now.</p>
-            <a href="demo.html" class="inline-flex items-center gap-3 bg-blue-600 text-white px-10 py-5 rounded-full font-black text-sm uppercase tracking-widest hover:scale-105 transition">
-                Explore the Terminal <i data-lucide="arrow-right"></i>
-            </a>
+    <section class="py-40 px-6">
+        <div class="max-w-4xl mx-auto glass-card p-24 rounded-[4rem] text-center">
+            <h2 class="text-5xl font-black mb-8 italic">Ready for March?</h2>
+            <p class="text-slate-400 mb-12">Join the cohort of creators who refuse to pay the context tax.</p>
+            <div class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+                <a href="demo.html" class="flex-1 bg-blue-600 text-white px-10 py-5 rounded-full font-black text-xs uppercase tracking-widest text-center hover:scale-105 transition">
+                    Try the Demo First
+                </a>
+            </div>
         </div>
     </section>
 
     <footer class="py-12 text-center text-gray-500 text-[10px] tracking-[0.4em] uppercase">
-        © 2026 Picao AI • All Rights Reserved
+        © 2026 Picao AI • Systems Active
     </footer>
 
     <script>
         lucide.createIcons();
+        
+        // CURSOR GLOW
         const glow = document.getElementById('cursor-glow');
         window.addEventListener('mousemove', (e) => {
             glow.style.left = e.clientX + 'px';
             glow.style.top = e.clientY + 'px';
         });
+
+        // THEME TOGGLE
         function toggleTheme() {
             document.getElementById('main-body').classList.toggle('light-theme');
             const isLight = document.getElementById('main-body').classList.contains('light-theme');
             document.getElementById('theme-icon').setAttribute('data-lucide', isLight ? 'moon' : 'sun');
             lucide.createIcons();
         }
+
+        // TYPEWRITER
         const words = ["Magic.", "Viral.", "Velocity.", "Systems."];
         let i = 0, j = 0, isDeleting = false;
         function type() {
