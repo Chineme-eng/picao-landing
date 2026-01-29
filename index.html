@@ -3,207 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Picao AI | Voice to Content in One Flow</title>
+    <title>Picao AI | Voice to Content</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #ffffff; overflow-x: hidden; }
         
-        .glow-mesh {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% -20%, rgba(59, 130, 246, 0.15), transparent 80%);
-            z-index: -1;
+        /* Floating Animation */
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(2deg); } }
+        .floating { animation: float 6s ease-in-out infinite; }
+
+        /* Remove Box / Add Glow */
+        .no-box { border: none !important; background: transparent !important; box-shadow: none !important; }
+        .logo-glow { filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.4)); }
+
+        /* Fun Product Section - Floating Elements */
+        .bento-item { 
+            background: rgba(255, 255, 255, 0.03); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .bento-item:hover { 
+            background: rgba(255, 255, 255, 0.08); 
+            transform: scale(1.05) translateY(-10px); 
+            border-color: #3b82f6;
         }
 
-        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.1); }
-
-        .interactive-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .interactive-card:hover {
-            background: #ffffff;
-            color: #000;
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-        }
-        .interactive-card:hover p, .interactive-card:hover h3 { color: #000; }
-
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        .picao-video { animation: float 6s ease-in-out infinite; border-radius: 2rem; box-shadow: 0 0 40px rgba(59, 130, 246, 0.2); }
-
-        /* Typewriter Cursor */
-        .cursor { display: inline-block; width: 3px; background-color: #3b82f6; margin-left: 4px; animation: blink 1s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .glass-nav { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); }
     </style>
 </head>
 <body>
 
-    <div class="glow-mesh"></div>
-
-    <nav class="fixed w-full z-50 top-0 glass-nav">
-        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <nav class="fixed w-full z-50 top-0 glass-nav py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-6">
             <div class="flex items-center gap-3">
-                <img src="Picao-Logo.png" alt="Picao" class="w-9 h-9">
-                <span class="text-xl font-bold tracking-tighter text-black">PICAO AI</span>
+                <img src="Picao-Logo.png" alt="Picao" class="w-8 h-8 object-contain">
+                <span class="text-xl font-black tracking-tighter text-black uppercase">PICAO AI</span>
             </div>
-            <div class="hidden md:flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
-                <a href="#problem" class="hover:text-black transition">The Problem</a>
-                <a href="#workflow" class="hover:text-black transition">Workflow</a>
-                <a href="#market" class="hover:text-black transition">Market</a>
+            <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+                <a href="#vision" class="hover:text-blue-600 transition">Vision</a>
+                <a href="#product" class="hover:text-blue-600 transition">Product</a>
+                <a href="#waitlist" class="hover:text-blue-600 transition">Waitlist</a>
             </div>
-            <button onclick="document.getElementById('waitlist').scrollIntoView()" class="bg-black text-white px-6 py-2 rounded-full font-bold text-sm hover:scale-105 transition">Apply for Beta</button>
+            <button onclick="document.getElementById('waitlist').scrollIntoView()" class="bg-blue-600 text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-black transition">Request Demo</button>
         </div>
     </nav>
 
     <section class="min-h-screen flex flex-col items-center justify-center pt-32 px-6 text-center">
-        <div class="mb-12 relative">
-            <video autoplay loop muted playsinline class="w-48 h-48 picao-video relative z-10">
+        <div class="mb-10 relative floating">
+            <video autoplay loop muted playsinline class="w-56 h-56 no-box logo-glow">
                 <source src="Picao-Logo-Animation.mp4" type="video/mp4">
-                <img src="Picao-Logo.png" alt="Picao Logo">
             </video>
-            <div class="absolute inset-0 bg-blue-500 blur-[100px] opacity-20"></div>
         </div>
-        <h1 class="text-6xl md:text-9xl font-black tracking-tighter mb-6 leading-[0.9]">
-            VOICE TO <br>
-            <span id="typewriter" class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500"></span><span class="cursor">|</span>
+        <h1 class="text-6xl md:text-9xl font-black tracking-tighter mb-6 leading-none">
+            VOICE TO <br><span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">MAGIC.</span>
         </h1>
-        <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            The #1 AI Creator Assistant. We turn rough ideas and voice memos into ready-to-post viral content in seconds.
+        <p class="text-gray-400 max-w-xl text-lg mb-10 leading-relaxed">
+            The #1 AI Creator Assistant. We turn rough ideas into viral content. No more context switching. Just creation.
         </p>
-        <div class="flex flex-wrap gap-4 justify-center">
-            <button onclick="document.getElementById('waitlist').scrollIntoView()" class="bg-blue-600 px-10 py-4 rounded-2xl font-bold text-lg hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] transition">Join the Waitlist</button>
-            <button onclick="document.getElementById('workflow').scrollIntoView()" class="bg-white/5 border border-white/10 px-10 py-4 rounded-2xl font-bold text-lg hover:bg-white/10 transition">The App Flow</button>
-        </div>
     </section>
 
-    <section id="problem" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto text-center md:text-left">
-            <h2 class="text-4xl md:text-6xl font-bold mb-16 italic">Fragmentation is killing your reach.</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="interactive-card p-10 rounded-[2.5rem]">
-                    <h3 class="text-2xl font-bold mb-4">65% Admin Time</h3>
-                    <p class="opacity-60 leading-relaxed">Creators waste most of their day switching between apps, scripts, and editing tools.</p>
+    <section id="product" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-2 bento-item p-10 rounded-[3rem] relative overflow-hidden h-[400px]">
+                <div class="relative z-10">
+                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Dashboard v1.0</span>
+                    <h3 class="text-4xl font-bold mt-4 mb-4">Unified Creator OS</h3>
+                    <p class="text-gray-400 max-w-xs">Every tool you need, floating in one workspace. From script to voiceover in 60 seconds.</p>
                 </div>
-                <div class="interactive-card p-10 rounded-[2.5rem]">
-                    <h3 class="text-2xl font-bold mb-4">Lost Momentum</h3>
-                    <p class="opacity-60 leading-relaxed">Great ideas die because the path from "Voice Memo" to "Finished Video" is too long.</p>
-                </div>
-                <div class="interactive-card p-10 rounded-[2.5rem]">
-                    <h3 class="text-2xl font-bold mb-4">High Burnout</h3>
-                    <p class="opacity-60 leading-relaxed">Maintaining consistency across TikTok, Reels, and YouTube is impossible without automation.</p>
-                </div>
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-600/20 blur-[100px] rounded-full"></div>
+                <div class="absolute right-10 bottom-10 w-64 h-40 bg-white/5 border border-white/10 rounded-2xl floating"></div>
             </div>
-        </div>
-    </section>
 
-    <section id="workflow" class="py-32 bg-white text-black">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-            <div>
-                <h2 class="text-5xl font-black mb-10">One Flow. Total Control.</h2>
-                <div class="space-y-12">
-                    <div class="flex gap-6">
-                        <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold shrink-0">1</div>
-                        <div>
-                            <h4 class="text-xl font-bold mb-2">Speak or Type</h4>
-                            <p class="text-gray-500">Record a raw thought. Our AI analyzes the hook potential immediately.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-6">
-                        <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold shrink-0">2</div>
-                        <div>
-                            <h4 class="text-xl font-bold mb-2">AI Script & Voiceover</h4>
-                            <p class="text-gray-500">Select your tone and platform. Get a viral script and professional AI audio instantly.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-6">
-                        <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold shrink-0">3</div>
-                        <div>
-                            <h4 class="text-xl font-bold mb-2">Ready to Post</h4>
-                            <p class="text-gray-500">Download the full bundle with captions and hashtags. Ready for TikTok & Reels.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-gray-50 p-4 rounded-[3rem] border border-gray-200 shadow-2xl">
-                <div class="bg-black rounded-[2rem] h-96 flex items-center justify-center overflow-hidden">
-                    <p class="text-xs font-mono text-blue-400 opacity-50 uppercase tracking-widest">Picao Dashboard v1.0 Preview</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="market" class="py-32 px-6 text-center">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-4xl font-bold mb-16">The $342B Creator Economy Opportunity</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="bento-item p-8 rounded-[3rem] flex flex-col justify-between">
+                <i data-lucide="mic" class="text-purple-500 w-10 h-10"></i>
                 <div>
-                    <div class="text-6xl font-black text-blue-500 mb-2">75%</div>
-                    <p class="text-xs uppercase tracking-[0.2em] text-gray-500">Efficiency Gain</p>
+                    <h4 class="text-xl font-bold mb-2">Voice Input</h4>
+                    <p class="text-gray-400 text-sm">Just speak. We handle the formatting.</p>
                 </div>
+            </div>
+
+            <div class="bento-item p-8 rounded-[3rem] flex flex-col justify-between">
+                <i data-lucide="zap" class="text-yellow-500 w-10 h-10"></i>
                 <div>
-                    <div class="text-6xl font-black text-purple-500 mb-2">1M+</div>
-                    <p class="text-xs uppercase tracking-[0.2em] text-gray-500">Target Users</p>
+                    <h4 class="text-xl font-bold mb-2">75% Faster</h4>
+                    <p class="text-gray-400 text-sm">Kill the administrative lag.</p>
                 </div>
-                <div>
-                    <div class="text-6xl font-black text-pink-500 mb-2">$1,200</div>
-                    <p class="text-xs uppercase tracking-[0.2em] text-gray-500">Avg. Annual Tool Savings</p>
+            </div>
+
+            <div class="md:col-span-2 bento-item p-10 rounded-[3rem] flex items-center justify-between overflow-hidden">
+                <div class="max-w-xs">
+                    <h4 class="text-2xl font-bold mb-2">Multi-Platform Export</h4>
+                    <p class="text-gray-400 text-sm">TikTok, Reels, Shorts. One click to rule them all.</p>
+                </div>
+                <div class="flex gap-2">
+                    <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"><i data-lucide="instagram" class="w-5 h-5"></i></div>
+                    <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"><i data-lucide="youtube" class="w-5 h-5"></i></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="waitlist" class="py-40 px-6">
-        <div class="max-w-4xl mx-auto bg-gradient-to-br from-blue-700 to-purple-800 p-16 rounded-[4rem] text-center shadow-2xl relative">
-            <div id="form-container">
-                <h2 class="text-5xl font-black mb-6">Built for the <br>next billion creators.</h2>
-                <p class="text-blue-100 mb-10 opacity-80">Join the private beta to start automating your creative workflow.</p>
-                <form onsubmit="handleForm(event)" class="flex flex-col md:flex-row gap-3 max-w-lg mx-auto">
-                    <input type="email" required placeholder="Email address" class="flex-1 px-8 py-5 rounded-2xl bg-white/10 border border-white/20 text-white outline-none focus:bg-white/20 transition">
-                    <button type="submit" class="bg-white text-blue-700 px-10 py-5 rounded-2xl font-bold hover:scale-105 transition">Get Access</button>
-                </form>
-            </div>
-            <div id="thank-you" class="hidden animate-pulse">
-                <h2 class="text-5xl font-black mb-4">Welcome to Picao.</h2>
-                <p class="text-blue-100">Check your inbox for founder updates.</p>
-            </div>
+    <section id="waitlist" class="py-32 px-6">
+        <div class="max-w-4xl mx-auto bg-white p-16 rounded-[4rem] text-center text-black shadow-[0_0_100px_rgba(59,130,246,0.2)]">
+            <h2 class="text-5xl font-black mb-6">Ready to launch?</h2>
+            <p class="text-gray-500 mb-10">Join 2,400+ creators waiting for the Picao private beta.</p>
+            <form class="flex flex-col md:flex-row gap-3 max-w-md mx-auto">
+                <input type="email" placeholder="Email address" class="flex-1 px-6 py-4 rounded-2xl bg-gray-100 border-none outline-none focus:ring-2 ring-blue-500 transition">
+                <button class="bg-black text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition">Join Now</button>
+            </form>
         </div>
     </section>
 
-    <footer class="py-12 border-t border-white/5 text-center text-gray-600 text-[10px] tracking-[0.5em] uppercase">
+    <footer class="py-12 text-center text-gray-600 text-[10px] tracking-[0.5em] uppercase">
         © 2026 Picao AI • All Rights Reserved
     </footer>
 
     <script>
         lucide.createIcons();
-
-        // Typewriter Effect Logic
-        const words = ["CONTENT.", "REELS.", "SCRIPTS.", "SHORTS."];
-        let i = 0; let j = 0; let currentWord = ""; let isDeleting = false;
-        const typeTarget = document.getElementById("typewriter");
-
-        function type() {
-            currentWord = words[i];
-            if (isDeleting) {
-                typeTarget.textContent = currentWord.substring(0, j - 1);
-                j--;
-                if (j === 0) { isDeleting = false; i = (i + 1) % words.length; }
-            } else {
-                typeTarget.textContent = currentWord.substring(0, j + 1);
-                j++;
-                if (j === currentWord.length) { isDeleting = true; setTimeout(type, 2000); return; }
-            }
-            setTimeout(type, isDeleting ? 100 : 200);
-        }
-        type();
-
-        function handleForm(e) {
-            e.preventDefault();
-            document.getElementById('form-container').classList.add('hidden');
-            document.getElementById('thank-you').classList.remove('hidden');
-        }
     </script>
 </body>
 </html>
