@@ -13,7 +13,6 @@
 
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--text); transition: all 0.5s ease; overflow-x: hidden; }
         
-        /* WARM CURSOR GLOW */
         #cursor-glow {
             position: fixed; top: 0; left: 0; width: 600px; height: 600px;
             background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
@@ -24,7 +23,6 @@
         .glass-card { background: var(--card); backdrop-filter: blur(12px); border: 1px solid var(--border); transition: all 0.4s ease; }
         .glass-card:hover { border-color: var(--accent); transform: scale(1.02); }
 
-        /* BIGGER APP CAROUSEL */
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .ticker-container { overflow: hidden; white-space: nowrap; width: 100%; position: relative; padding: 60px 0; background: var(--card); }
         .ticker-track { display: inline-flex; animation: scroll 30s linear infinite; }
@@ -33,7 +31,6 @@
 
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         .floating { animation: float 5s ease-in-out infinite; }
-        .hidden-demo { display: none; }
     </style>
 </head>
 <body id="main-body">
@@ -50,7 +47,7 @@
                 <button onclick="toggleTheme()" class="p-2.5 glass-card rounded-xl hover:scale-110 transition">
                     <i id="theme-icon" data-lucide="sun" class="w-5 h-5"></i>
                 </button>
-                <button onclick="document.getElementById('waitlist').scrollIntoView()" class="bg-blue-600 text-white px-7 py-2.5 rounded-full font-bold text-sm">Join Beta</button>
+                <a href="demo.html" class="bg-blue-600 text-white px-7 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition">Launch Demo</a>
             </div>
         </div>
     </nav>
@@ -58,13 +55,19 @@
     <section class="min-h-screen flex flex-col items-center justify-center pt-32 px-6 text-center">
         <div class="mb-12 flex flex-col items-center">
             <span class="text-[10px] font-black uppercase tracking-[0.3em] opacity-40 mb-3">Release Roadmap: March 2026</span>
-            <div class="w-64 h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="w-[65%] h-full bg-blue-600 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.3)]"></div></div>
+            <div class="w-64 h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="w-[65%] h-full bg-blue-600 rounded-full"></div></div>
         </div>
         <div class="mb-10 floating">
-            <video autoplay loop muted playsinline class="w-56 h-56 filter drop-shadow-[0_0_30px_rgba(59,130,246,0.2)]"><source src="Picao-Logo-Animation.mp4" type="video/mp4"></video>
+            <video autoplay loop muted playsinline class="w-56 h-56 filter drop-shadow-[0_0_30px_rgba(59,130,246,0.2)]">
+                <source src="Picao-Logo-Animation.mp4" type="video/mp4">
+            </video>
         </div>
         <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight mb-8">Voice to <span id="typewriter" class="text-blue-500"></span></h1>
         <p class="opacity-50 max-w-2xl text-lg md:text-xl mb-12 font-medium">One voice memo. 10+ social assets. Zero administrative lag.</p>
+        
+        <a href="demo.html" class="bg-white text-black px-12 py-5 rounded-full font-black text-xs uppercase tracking-widest hover:bg-blue-600 hover:text-white transition shadow-2xl">
+            Launch Interactive Dashboard
+        </a>
     </section>
 
     <div class="ticker-container border-y border-white/5">
@@ -82,76 +85,73 @@
         </div>
     </div>
 
-    <section id="simulator" class="py-32 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-16"><h2 class="text-4xl font-bold italic">The Intelligence Terminal</h2></div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-            <div class="lg:col-span-4 space-y-3">
-                <button onclick="runSim('growth')" class="w-full text-left p-6 glass-card rounded-2xl"><p class="text-[10px] font-black text-blue-500 uppercase">Seed 01</p><p class="font-bold opacity-80">"Fragmented AI tools"</p></button>
-                <button onclick="runSim('productivity')" class="w-full text-left p-6 glass-card rounded-2xl"><p class="text-[10px] font-black text-purple-500 uppercase">Seed 02</p><p class="font-bold opacity-80">"Solo-biz scaling"</p></button>
-                <button onclick="runSim('creative')" class="w-full text-left p-6 glass-card rounded-2xl"><p class="text-[10px] font-black text-pink-500 uppercase">Seed 03</p><p class="font-bold opacity-80">"Creative Burnout"</p></button>
-                <button onclick="runSim('future')" class="w-full text-left p-6 glass-card rounded-2xl"><p class="text-[10px] font-black text-green-500 uppercase">Seed 04</p><p class="font-bold opacity-80">"2026 Content Trends"</p></button>
-            </div>
-            <div class="lg:col-span-8 glass-card p-12 rounded-[3rem] min-h-[450px]">
-                <div id="sim-loader" class="hidden-demo flex flex-col items-center justify-center h-64"><div class="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div></div>
-                <div id="sim-content"><h3 id="sim-title" class="text-2xl font-bold mb-6 italic text-blue-500">Awaiting Input...</h3><p id="sim-body" class="text-slate-400 italic mb-8">Select a seed idea to analyze.</p><div id="sim-tags" class="flex flex-wrap gap-2"></div></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-32 px-6 bg-slate-900/10 border-y border-white/5">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div class="glass-card p-12 rounded-[3rem] text-center hover:scale-105 transition"><div class="text-7xl font-black mb-4">75%</div><p class="text-[10px] uppercase font-black tracking-widest opacity-40">Admin Reduction</p></div>
-            <div class="glass-card p-12 rounded-[3rem] text-center hover:scale-105 transition"><div class="text-7xl font-black mb-4">4x</div><p class="text-[10px] uppercase font-black tracking-widest opacity-40">Viral Velocity</p></div>
-            <div class="glass-card p-12 rounded-[3rem] text-center hover:scale-105 transition"><div class="text-7xl font-black mb-4">$342B</div><p class="text-[10px] uppercase font-black tracking-widest opacity-40">Market Opportunity</p></div>
-        </div>
-    </section>
-
     <section class="py-32 px-6 max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold text-center mb-20 italic underline decoration-blue-500 decoration-4 underline-offset-8">Market Validation</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="glass-card p-10 rounded-[2.5rem]"><p class="opacity-60 italic mb-10">"Idea to script in 60 seconds. Reclaimed my weekends."</p><div class="flex items-center gap-4"><img src="https://ui-avatars.com/api/?name=Alex+R&background=3b82f6&color=fff" class="w-12 h-12 rounded-full border-2 border-blue-500/30"><div><p class="font-bold">Alex Rivera</p></div></div></div>
-            <div class="glass-card p-10 rounded-[2.5rem]"><p class="opacity-60 italic mb-10">"Finally, a tool that understands the solo creator workflow."</p><div class="flex items-center gap-4"><img src="https://ui-avatars.com/api/?name=Sarah+C&background=a855f7&color=fff" class="w-12 h-12 rounded-full border-2 border-purple-500/30"><div><p class="font-bold">Sarah Chen</p></div></div></div>
-            <div class="glass-card p-10 rounded-[2.5rem]"><p class="opacity-60 italic mb-10">"The March cohort is exactly what the economy needs."</p><div class="flex items-center gap-4"><img src="https://ui-avatars.com/api/?name=Jordan+L&background=10b981&color=fff" class="w-12 h-12 rounded-full border-2 border-green-500/30"><div><p class="font-bold">Jordan Lee</p></div></div></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="glass-card p-12 rounded-[2.5rem]"><div class="text-7xl font-black mb-3">75%</div><p class="text-[10px] uppercase font-black opacity-40">Efficiency Gain</p></div>
+            <div class="glass-card p-12 rounded-[2.5rem]"><div class="text-7xl font-black mb-3">4x</div><p class="text-[10px] uppercase font-black opacity-40">Output Velocity</p></div>
+            <div class="glass-card p-12 rounded-[2.5rem]"><div class="text-7xl font-black mb-3">$342B</div><p class="text-[10px] uppercase font-black opacity-40">Market Scale</p></div>
         </div>
     </section>
 
     <section id="faq" class="py-32 px-6 max-w-3xl mx-auto">
-        <h2 class="text-4xl font-bold text-center mb-16 italic underline decoration-blue-500 decoration-4">The Usual FAQ</h2>
+        <h2 class="text-4xl font-bold text-center mb-16 italic underline decoration-blue-500 decoration-4 underline-offset-8">The Usual FAQ</h2>
         <div class="space-y-4">
-            <div class="glass-card p-8 rounded-2xl"><h4 class="font-bold text-lg mb-3">Is Picao a simple AI wrapper?</h4><p class="opacity-50 text-sm">No. We manage the entire thought lifecycle—from voice to production assets.</p></div>
-            <div class="glass-card p-8 rounded-2xl"><h4 class="font-bold text-lg mb-3">Why wait until March?</h4><p class="opacity-50 text-sm">We're perfecting our proprietary engine for high-retention outputs.</p></div>
-            <div class="glass-card p-8 rounded-2xl"><h4 class="font-bold text-lg mb-3">Can I export directly to social apps?</h4><p class="opacity-50 text-sm">We are currently building direct API integrations for one-click publishing by Q2 2026.</p></div>
+            <div class="glass-card p-8 rounded-2xl">
+                <h4 class="font-bold text-lg mb-3">Is Picao a simple AI wrapper?</h4>
+                <p class="opacity-50 text-sm">No. We manage the entire thought lifecycle—from voice to production assets.</p>
+            </div>
+            <div class="glass-card p-8 rounded-2xl">
+                <h4 class="font-bold text-lg mb-3">Why wait until March?</h4>
+                <p class="opacity-50 text-sm">We're perfecting our proprietary engine to ensure quality over speed.</p>
+            </div>
+            <div class="glass-card p-8 rounded-2xl">
+                <h4 class="font-bold text-lg mb-3">Can I export directly to social apps?</h4>
+                <p class="opacity-50 text-sm">We are currently building direct API integrations for one-click publishing by Q2 2026.</p>
+            </div>
         </div>
     </section>
 
-    <section id="waitlist" class="py-40 px-6"><div class="max-w-4xl mx-auto glass-card p-24 rounded-[4rem] text-center"><h2 class="text-5xl font-black mb-8">Secure Your March Spot.</h2><form class="flex flex-col md:flex-row gap-4 max-w-md mx-auto"><input type="email" placeholder="Email" class="flex-1 bg-transparent border border-white/20 px-8 py-4 rounded-full outline-none focus:border-blue-500"><button class="bg-blue-600 text-white px-10 py-4 rounded-full font-bold">Request Access</button></form></div></section>
+    <section class="py-40 px-6 bg-blue-600/5">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-black mb-8 italic">Ready to see the magic?</h2>
+            <p class="text-slate-400 mb-12">Skip the waitlist and experience the Picao Intelligence Terminal right now.</p>
+            <a href="demo.html" class="inline-flex items-center gap-3 bg-blue-600 text-white px-10 py-5 rounded-full font-black text-sm uppercase tracking-widest hover:scale-105 transition">
+                Explore the Terminal <i data-lucide="arrow-right"></i>
+            </a>
+        </div>
+    </section>
 
-    <footer class="py-12 text-center text-gray-500 text-[10px] tracking-[0.4em] uppercase">© 2026 Picao AI • Systems Active</footer>
+    <footer class="py-12 text-center text-gray-500 text-[10px] tracking-[0.4em] uppercase">
+        © 2026 Picao AI • Systems Active
+    </footer>
 
     <script>
         lucide.createIcons();
-        const engine = {
-            growth: { title: "Efficiency Mapping", body: "AI analyzed: Fragmented tools waste 65% of time. Script generated.", tags: ["#efficiency", "#creatorOS"] },
-            productivity: { title: "Scale Logic", body: "AI analyzed: Solo-biz friction. Systems problem, not hustle.", tags: ["#systems", "#scaling"] },
-            creative: { title: "Burnout Defense", body: "AI analyzed: High-output fatigue. Reclaim your focus.", tags: ["#focus", "#wellness"] },
-            future: { title: "2026 Prediction", body: "AI analyzed: The future is intelligence-led content.", tags: ["#future", "#ai"] }
-        };
-        function runSim(type) {
-            const loader = document.getElementById('sim-loader'); const content = document.getElementById('sim-content');
-            loader.classList.remove('hidden-demo'); content.classList.add('hidden-demo');
-            setTimeout(() => {
-                loader.classList.add('hidden-demo'); content.classList.remove('hidden-demo');
-                document.getElementById('sim-title').innerText = engine[type].title;
-                document.getElementById('sim-body').innerText = engine[type].body;
-                document.getElementById('sim-tags').innerHTML = engine[type].tags.map(t => `<span class="bg-white/5 px-4 py-2 rounded-full text-xs text-blue-400 font-bold">${t}</span>`).join('');
-            }, 1200);
+        const glow = document.getElementById('cursor-glow');
+        window.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+        function toggleTheme() {
+            document.getElementById('main-body').classList.toggle('light-theme');
+            const isLight = document.getElementById('main-body').classList.contains('light-theme');
+            document.getElementById('theme-icon').setAttribute('data-lucide', isLight ? 'moon' : 'sun');
+            lucide.createIcons();
         }
-        const glow = document.getElementById('cursor-glow'); window.addEventListener('mousemove', (e) => { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; });
-        function toggleTheme() { document.getElementById('main-body').classList.toggle('light-theme'); const isLight = document.getElementById('main-body').classList.contains('light-theme'); document.getElementById('theme-icon').setAttribute('data-lucide', isLight ? 'moon' : 'sun'); lucide.createIcons(); }
-        const words = ["Magic.", "Viral.", "Velocity.", "Systems."]; let i = 0, j = 0, isDeleting = false;
-        function type() { const word = words[i]; const target = document.getElementById("typewriter");
-            if (isDeleting) { target.textContent = word.substring(0, j - 1); j--; if (j === 0) { isDeleting = false; i = (i + 1) % words.length; } }
-            else { target.textContent = word.substring(0, j + 1); j++; if (j === word.length) { isDeleting = true; setTimeout(type, 2000); return; } }
+        const words = ["Magic.", "Viral.", "Velocity.", "Systems."];
+        let i = 0, j = 0, isDeleting = false;
+        function type() {
+            const word = words[i];
+            const target = document.getElementById("typewriter");
+            if (isDeleting) {
+                target.textContent = word.substring(0, j - 1);
+                j--;
+                if (j === 0) { isDeleting = false; i = (i + 1) % words.length; }
+            } else {
+                target.textContent = word.substring(0, j + 1);
+                j++;
+                if (j === word.length) { isDeleting = true; setTimeout(type, 2000); return; }
+            }
             setTimeout(type, isDeleting ? 75 : 150);
         }
         type();
