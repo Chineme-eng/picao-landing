@@ -3,203 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Picao AI | Creator Intelligence</title>
+    <title>Picao AI | 2-Min Voice to 12 Posts</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #020617; --text: #ffffff; --card: rgba(255, 255, 255, 0.02); --border: rgba(255, 255, 255, 0.05); --accent: #3b82f6; }
-        .light-theme { --bg: #ffffff; --text: #0f172a; --card: #f8fafc; --border: rgba(0, 0, 0, 0.05); --accent: #2563eb; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--text); transition: all 0.5s ease; overflow-x: hidden; }
-        #cursor-glow { position: fixed; top: 0; left: 0; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); z-index: 0; }
-        .glass-card { background: var(--card); backdrop-filter: blur(12px); border: 1px solid var(--border); transition: all 0.4s ease; }
-        .icon-tiktok { color: #ff0050; } .icon-instagram { color: #e1306c; } .icon-youtube { color: #ff0000; } .icon-twitter { color: #1da1f2; } .icon-threads { color: #ffffff; } .icon-facebook { color: #1877f2; } .icon-linkedin { color: #0a66c2; }
+        :root { --bg: #020617; --text: #ffffff; --accent: #3b82f6; --card: rgba(255, 255, 255, 0.02); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+        .glass-panel { background: var(--card); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .platform-tag { padding: 10px 20px; border-radius: 99px; font-size: 11px; font-weight: 800; border: 1px solid rgba(255,255,255,0.1); }
+        .metric-label { font-size: 10px; font-weight: 800; opacity: 0.4; letter-spacing: 0.1em; text-transform: uppercase; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .ticker-container { overflow: hidden; white-space: nowrap; width: 100%; position: relative; padding: 60px 0; background: var(--card); }
-        .ticker-track { display: inline-flex; animation: scroll 40s linear infinite; }
-        .platform-tag { padding: 20px 50px; margin-right: 30px; border-radius: 99px; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 20px; border: 2px solid var(--border); background: var(--bg); transition: 0.3s; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .floating { animation: float 5s ease-in-out infinite; }
-        
-        #founder-bubble { transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 100; box-shadow: 0 0 50px rgba(59, 130, 246, 0.3); }
-        .bubble-expanded { width: 360px !important; height: 580px !important; border-radius: 3rem !important; }
-        @keyframes beacon-pulse { 0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); } 70% { box-shadow: 0 0 0 20px rgba(59, 130, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); } }
-        .pulse-active { animation: beacon-pulse 2s infinite; }
-
-        /* BIGGER WRITING ON STATS */
-        .stat-card { perspective: 1000px; height: 320px; }
-        .stat-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d; }
-        .stat-card:hover .stat-inner { transform: rotateY(180deg); }
-        .stat-front, .stat-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 3rem; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2.5rem; }
-        .stat-back { transform: rotateY(180deg); background: var(--accent); color: white; }
-
-        /* SEAMLESS TESTIMONIAL DECK */
-        .testimonial-deck { position: relative; width: 100%; max-width: 550px; height: 450px; margin: 0 auto; perspective: 1000px; }
-        .testimonial-card { position: absolute; width: 100%; height: 100%; border-radius: 3rem; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); cursor: pointer; padding: 3rem; user-select: none; }
-        .testimonial-card.exit { transform: translateX(150%) rotate(30deg); opacity: 0; }
-        
-        .neural-pulse { width: 4px; height: 4px; background: #10b981; border-radius: 50%; animation: pulse-green 2s infinite; }
-        @keyframes pulse-green { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
+        .ticker-track { display: flex; width: max-content; animation: scroll 30s linear infinite; }
     </style>
 </head>
-<body id="main-body">
-    <div id="cursor-glow"></div>
-    
-    <nav class="fixed w-full z-50 top-0 border-b border-white/5 backdrop-blur-xl">
-        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-5">
-            <div class="flex items-center gap-3"><img src="Picao-Logo.png" alt="Picao" class="w-9 h-9 floating"><span class="text-xl font-bold tracking-tight">Picao AI</span></div>
-            <div class="flex items-center gap-6">
-                <button onclick="toggleTheme()" class="p-2.5 glass-card rounded-xl"><i id="theme-icon" data-lucide="sun" class="w-5 h-5"></i></button>
-                <a href="demo.html" class="bg-blue-600 text-white px-7 py-2.5 rounded-full font-bold text-sm shadow-lg hover:scale-105 transition">Launch Demo</a>
-            </div>
-        </div>
-    </nav>
+<body>
 
-    <section class="min-h-screen flex flex-col items-center justify-center pt-32 px-6 text-center">
-        <div class="mb-12 flex flex-col items-center">
-            <span class="text-[10px] font-black uppercase tracking-[0.3em] opacity-40 mb-3">Release Roadmap: March 2026</span>
-            <div class="w-64 h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="w-[65%] h-full bg-blue-600 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.3)]"></div></div>
+    <section class="min-h-screen flex flex-col items-center justify-center pt-20 px-6 text-center">
+        <div class="mb-8">
+            <span class="bg-blue-600/10 text-blue-500 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest border border-blue-500/20">
+                Private Alpha: Live Now
+            </span>
         </div>
-        <div class="mb-10" style="perspective: 1000px;">
-            <div class="relative w-72 h-72 glass-card rounded-[3rem] overflow-hidden floating shadow-2xl mx-auto" style="transform: rotateY(-15deg) rotateX(10deg); border: 1px solid rgba(255,255,255,0.15);">
-                <video autoplay loop muted playsinline class="w-full h-full object-cover"><source src="Picao-Logo-Animation.mp4" type="video/mp4"></video>
-            </div>
+        
+        <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter mb-8 leading-none max-w-5xl">
+            Turn a 2-minute voice note into <span class="text-blue-500">12 platform-ready posts.</span>
+        </h1>
+        
+        <p class="opacity-60 max-w-2xl text-lg md:text-2xl mb-12 font-medium leading-tight">
+            One thought, refracted into TikTok scripts, LinkedIn articles, and X threads. 
+            <span class="text-white">Reclaim 20 hours of production time every week.</span>
+        </p>
+
+        <div class="flex flex-col md:flex-row gap-6 mb-20">
+            <a href="demo.html" class="bg-blue-600 text-white px-12 py-5 rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition shadow-2xl">Launch Terminal Demo</a>
+            <a href="#how-it-works" class="glass-panel text-white px-12 py-5 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white/5 transition">How it works</a>
         </div>
-        <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight mb-8">Voice to <span id="typewriter" class="text-blue-500"></span></h1>
-        <p class="opacity-50 max-w-2xl text-lg md:text-xl mb-12 font-medium">Capture raw thought. Deploy a multi-platform content empire.</p>
-        <a href="demo.html" class="bg-white text-black px-12 py-5 rounded-full font-black text-xs uppercase tracking-widest hover:bg-blue-600 hover:text-white transition shadow-2xl">Launch Terminal</a>
     </section>
 
-    <div class="ticker-container border-y border-white/5">
-        <div class="ticker-track">
-            <div class="platform-tag"><i data-lucide="video" class="icon-tiktok"></i> TikTok</div>
-            <div class="platform-tag"><i data-lucide="instagram" class="icon-instagram"></i> Instagram</div>
-            <div class="platform-tag"><i data-lucide="youtube" class="icon-youtube"></i> Shorts</div>
-            <div class="platform-tag"><i data-lucide="twitter" class="icon-twitter"></i> X / Twitter</div>
-            <div class="platform-tag"><i data-lucide="at-sign" class="icon-threads"></i> Threads</div>
-            <div class="platform-tag"><i data-lucide="facebook" class="icon-facebook"></i> Facebook</div>
-            <div class="platform-tag"><i data-lucide="linkedin" class="icon-linkedin"></i> LinkedIn</div>
-            <div class="platform-tag"><i data-lucide="video" class="icon-tiktok"></i> TikTok</div>
-            <div class="platform-tag"><i data-lucide="instagram" class="icon-instagram"></i> Instagram</div>
-            <div class="platform-tag"><i data-lucide="youtube" class="icon-youtube"></i> Shorts</div>
-            <div class="platform-tag"><i data-lucide="twitter" class="icon-twitter"></i> X / Twitter</div>
-            <div class="platform-tag"><i data-lucide="at-sign" class="icon-threads"></i> Threads</div>
-            <div class="platform-tag"><i data-lucide="facebook" class="icon-facebook"></i> Facebook</div>
-            <div class="platform-tag"><i data-lucide="linkedin" class="icon-linkedin"></i> LinkedIn</div>
+    
+    <section id="how-it-works" class="py-32 px-6 border-y border-white/5 bg-white/[0.01]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div class="space-y-4">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black">1</div>
+                <h3 class="text-xl font-bold">Record</h3>
+                <p class="opacity-50 text-sm leading-relaxed">Speak your raw, unedited ideas into the Picao terminal. No scripts or outlines required.</p>
+            </div>
+            <div class="space-y-4 border-l border-white/5 md:pl-16">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black">2</div>
+                <h3 class="text-xl font-bold">Process</h3>
+                <p class="opacity-50 text-sm leading-relaxed">Our engine identifies core value pillars and generates 12 unique scripts, hooks, and captions tailored for each platform.</p>
+            </div>
+            <div class="space-y-4 border-l border-white/5 md:pl-16">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black">3</div>
+                <h3 class="text-xl font-bold">Deploy</h3>
+                <p class="opacity-50 text-sm leading-relaxed">Get a TikTok script, LinkedIn article, X thread, and IG reel outline—all scheduled and ready to post.</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <section class="py-32 px-6 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div class="stat-card"><div class="stat-inner">
-                <div class="stat-front glass-card"><div class="text-8xl font-black mb-2">75%</div><p class="text-xs uppercase font-black opacity-40 tracking-widest">Admin Saved</p></div>
-                <div class="stat-back"><h4 class="text-2xl font-black mb-4 uppercase">Workflow Alpha</h4><p class="text-lg font-semibold text-center leading-snug">Picao eliminates administrative drag. Speak your vision; we build the architectural assets.</p></div>
-            </div></div>
-            <div class="stat-card"><div class="stat-inner">
-                <div class="stat-front glass-card"><div class="text-8xl font-black mb-2">4x</div><p class="text-xs uppercase font-black opacity-40 tracking-widest">Post Frequency</p></div>
-                <div class="stat-back"><h4 class="text-2xl font-black mb-4 uppercase">Volume Engine</h4><p class="text-lg font-semibold text-center leading-snug">Refraction logic turns one thought into ten high-retention assets instantly for total dominance.</p></div>
-            </div></div>
-            <div class="stat-card"><div class="stat-inner">
-                <div class="stat-front glass-card"><div class="text-8xl font-black mb-2">$342B</div><p class="text-xs uppercase font-black opacity-40 tracking-widest">TAM 2026</p></div>
-                <div class="stat-back"><h4 class="text-2xl font-black mb-4 uppercase">Market Logic</h4><p class="text-lg font-semibold text-center leading-snug">The creator economy is the new enterprise tier. Picao is the OS for this revolution.</p></div>
-            </div></div>
+    <section class="py-32 px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="glass-panel p-10 rounded-[3rem]">
+            <p class="metric-label mb-2">Alpha Testing Results</p>
+            <h4 class="text-6xl font-black mb-4">15+ hrs</h4>
+            <p class="opacity-50 font-bold uppercase text-xs tracking-widest">Average Weekly Time Saved per Founder</p>
+        </div>
+        <div class="glass-panel p-10 rounded-[3rem]">
+            <p class="metric-label mb-2">Alpha Testing Results</p>
+            <h4 class="text-6xl font-black mb-4">4x</h4>
+            <p class="opacity-50 font-bold uppercase text-xs tracking-widest">Increase in Multi-Platform Post Frequency</p>
         </div>
     </section>
 
     <section class="py-32 px-6 bg-blue-600/5">
-        <h2 class="text-4xl font-bold text-center mb-6 italic underline decoration-blue-500 decoration-4 underline-offset-8">Market Validation</h2>
-        <p class="text-center opacity-40 text-xs font-bold uppercase tracking-widest mb-16">Tap card to explore</p>
-        <div class="testimonial-deck" id="deck" onclick="nextCard()">
-            <div class="testimonial-card glass-card shadow-2xl" style="z-index: 10; transform: scale(0.8) translateY(60px);">
-                <p class="text-lg font-medium italic mb-10 opacity-80">"Picao identified my content gaps and filled them with scripts that actually sound like me."</p>
-                <div class="flex items-center gap-4"><img src="https://ui-avatars.com/api/?name=David+K&background=facc15&color=000" class="w-14 h-14 rounded-full border-2 border-yellow-400"><div><p class="font-black text-lg">David Kim</p><p class="text-xs font-bold opacity-40">Lifestyle Creator • Refracted 120+ Assets</p></div></div>
+        <div class="max-w-4xl mx-auto space-y-8">
+            <div class="glass-panel p-10 rounded-[2.5rem]">
+                <p class="text-lg font-medium italic mb-8">"I recorded a 2-min voice memo during my walk, got 12 scripts back, and posted 4 to TikTok the same night. It’s the first AI that actually sounds like me."</p>
+                <p class="font-black text-blue-500 uppercase text-[10px] tracking-widest">Founder, Series A Fintech</p>
             </div>
-            <div class="testimonial-card glass-card shadow-2xl" style="z-index: 20; transform: scale(0.85) translateY(40px);">
-                <p class="text-lg font-medium italic mb-10 opacity-80">"Finally, an AI that doesn't feel like a toy. It's a genuine industrial engine for my brand."</p>
-                <div class="flex items-center gap-4"><img src="https://ui-avatars.com/api/?name=Mia+W&background=10b981&color=fff" class="w-14 h-14 rounded-full border-2 border-green-500"><div><p class="font-black text-lg">Mia Wong</p><p class="text-xs font-bold opacity-40">Series A Founder • Saved 30 hrs/mo</p></div></div>
-            </div>
-            <div class="testimonial-card glass-card shadow-2xl" style="z-index: 30; transform: scale(0.9) translateY(20px);">
-                <p class="text-lg font-medium italic mb-10 opacity-80">"I go from a voice memo to a scheduled Reels bundle in under 15 minutes. It's pure magic."</p>
-                <div class="flex items-center gap-4"><img src="https://ui-avatars.com/api/?name=Sarah+C&background=a855f7&color=fff" class="w-14 h-14 rounded-full border-2 border-purple-500"><div><p class="font-black text-lg">Sarah Chen</p><p class="text-xs font-bold opacity-40">Marketing Lead • 4x Output Growth</p></div></div>
-            </div>
-            <div class="testimonial-card glass-card shadow-2xl" style="z-index: 40; transform: scale(0.95) translateY(10px);">
-                <p class="text-lg font-medium italic mb-10 opacity-80">"Picao is the missing link in my production stack. The administrative lag is officially gone."</p>
-                <div class="flex items-center gap-4"><img src="https://ui-avatars.com/api/?name=Leo+M&background=3b82f6&color=fff" class="w-14 h-14 rounded-full border-2 border-blue-500"><div><p class="font-black text-lg">Leo Martinez</p><p class="text-xs font-bold opacity-40">Creative Director • Eliminated Context Tax</p></div></div>
-            </div>
-            <div class="testimonial-card glass-card shadow-2xl" style="z-index: 50; transform: scale(1) translateY(0);">
-                <p class="text-lg font-medium italic mb-10 opacity-80">"Idea to script in 60 seconds. Picao reclaimed my weekends and let me focus on building."</p>
-                <div class="flex items-center gap-4"><img src="https://ui-avatars.com/api/?name=Alex+R&background=3b82f6&color=fff" class="w-14 h-14 rounded-full border-2 border-blue-600"><div><p class="font-black text-lg">Alex Rivera</p><p class="text-xs font-bold opacity-40">Tech Creator • Reclaimed 15 hrs/week</p></div></div>
+            <div class="glass-panel p-10 rounded-[2.5rem]">
+                <p class="text-lg font-medium italic mb-8">"I used to spend 6 hours every Sunday scripting. I did my entire next week of content with Picao during my morning coffee today."</p>
+                <p class="font-black text-blue-500 uppercase text-[10px] tracking-widest">Growth Lead @ B2B SaaS</p>
             </div>
         </div>
     </section>
 
-    <div id="founder-bubble" class="fixed bottom-10 right-10 w-24 h-24 glass-card rounded-full cursor-pointer flex items-center justify-center overflow-hidden border-blue-500/50 pulse-active shadow-2xl">
-        <div id="bubble-collapsed" class="flex flex-col items-center justify-center text-center" onclick="toggleBubble(true)">
-            <img src="Picao-Logo.png" class="w-10 h-10 mb-1">
-            <span class="text-[9px] font-black uppercase tracking-tighter text-blue-400">FOUNDER</span>
-        </div>
-        <div id="bubble-content" class="hidden p-8 w-full h-full flex flex-col">
-            <div class="flex justify-between items-start mb-8">
-                <h3 class="font-black text-[12px] uppercase tracking-widest text-blue-500">Direct Terminal</h3>
-                <button onclick="toggleBubble(false)" class="p-2 hover:bg-white/10 rounded-lg transition"><i data-lucide="x" class="w-5 h-5"></i></button>
+    <footer class="py-20 px-6 border-t border-white/5 text-center">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-[10px] font-black tracking-widest uppercase opacity-40">New York, NY // Public Launch: Feb 2026</div>
+            <div class="flex gap-6">
+                <a href="#" class="opacity-20 hover:opacity-100 transition"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <a href="#" class="opacity-20 hover:opacity-100 transition"><i data-lucide="twitter" class="w-5 h-5"></i></a>
             </div>
-            <div class="space-y-4 mb-10">
-                <div class="flex items-center gap-4 p-5 glass-card rounded-2xl"><i data-lucide="mail" class="w-5 h-5 text-blue-400"></i><a href="mailto:founder@picaoai.com" class="text-sm font-bold">founder@picaoai.com</a></div>
-                <div class="flex items-center gap-4 p-5 glass-card rounded-2xl"><i data-lucide="phone" class="w-5 h-5 text-green-400"></i><span class="text-sm font-bold">516-440-0891</span></div>
-            </div>
-            <div class="border-t border-white/5 pt-8 space-y-4 flex-1 overflow-y-auto">
-                <div class="p-6 bg-white/5 rounded-3xl border border-white/5">
-                    <p class="text-[11px] font-black uppercase opacity-40 mb-3 tracking-widest">Pricing Economics</p>
-                    <p class="text-sm font-bold mb-1">Free 7-Day Trial Enabled</p>
-                    <p class="text-xs opacity-60">Pro: $19/mo (Essential Assets) <br>Creator: $40/mo (Full Refraction OS)</p>
-                </div>
-                <div class="p-6 bg-white/5 rounded-3xl border border-white/5">
-                    <p class="text-[11px] font-black uppercase opacity-40 mb-3 tracking-widest">Neural Status</p>
-                    <div class="flex items-center gap-3"><div class="neural-pulse"></div><p class="text-xs opacity-60 italic">Core Intelligence v1.0 Active in NY</p></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer class="py-20 px-6 border-t border-white/5 mt-20 text-center">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-            <div class="text-[11px] font-black tracking-widest uppercase opacity-40">New York, NY • Picao AI</div>
-            <div class="flex items-center gap-4">
-                <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" class="p-4 glass-card rounded-2xl hover:scale-110 transition group"><i data-lucide="linkedin" class="w-6 h-6 group-hover:text-[#0a66c2]"></i></a>
-                <a href="https://instagram.com/YOUR_PROFILE" target="_blank" class="p-4 glass-card rounded-2xl hover:scale-110 transition group"><i data-lucide="instagram" class="w-6 h-6 group-hover:text-[#e1306c]"></i></a>
-                <a href="https://twitter.com/YOUR_PROFILE" target="_blank" class="p-4 glass-card rounded-2xl hover:scale-110 transition group"><i data-lucide="twitter" class="w-6 h-6 group-hover:text-[#1da1f2]"></i></a>
-            </div>
-            <div class="text-[11px] font-black tracking-[0.4em] uppercase opacity-20">© 2026 All Rights Reserved</div>
+            <div class="text-[10px] font-black tracking-[0.4em] uppercase opacity-20">© 2026 Picao Intelligence</div>
         </div>
     </footer>
 
-    <script>
-        lucide.createIcons();
-        function toggleBubble(open) {
-            const b = document.getElementById('founder-bubble'); const c = document.getElementById('bubble-content'); const cl = document.getElementById('bubble-collapsed');
-            if(open) { b.classList.remove('pulse-active'); b.classList.add('bubble-expanded'); setTimeout(() => { c.classList.remove('hidden'); cl.classList.add('hidden'); }, 300); 
-            } else { c.classList.add('hidden'); cl.classList.remove('hidden'); b.classList.remove('bubble-expanded'); setTimeout(() => b.classList.add('pulse-active'), 600); }
-        }
-        function nextCard() {
-            const deck = document.getElementById('deck'); const cards = deck.querySelectorAll('.testimonial-card');
-            const activeCard = cards[cards.length - 1]; activeCard.classList.add('exit');
-            setTimeout(() => { deck.prepend(activeCard); activeCard.classList.remove('exit');
-                deck.querySelectorAll('.testimonial-card').forEach((card, index) => {
-                    card.style.zIndex = (index + 1) * 10;
-                    card.style.transform = `scale(${0.8 + (index * 0.05)}) translateY(${60 - (index * 20)}px)`;
-                });
-            }, 600);
-        }
-        const glow = document.getElementById('cursor-glow'); window.addEventListener('mousemove', (e) => { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; });
-        function toggleTheme() { document.getElementById('main-body').classList.toggle('light-theme'); const icon = document.getElementById('theme-icon'); icon.setAttribute('data-lucide', document.getElementById('main-body').classList.contains('light-theme') ? 'moon' : 'sun'); lucide.createIcons(); }
-        const words = ["Magic.", "Viral.", "Velocity.", "Systems."]; let i = 0, j = 0, isDeleting = false;
-        function type() {
-            const target = document.getElementById("typewriter"); const word = words[i];
-            if (isDeleting) { target.textContent = word.substring(0, j - 1); j--; if (j === 0) { isDeleting = false; i = (i + 1) % words.length; } }
-            else { target.textContent = word.substring(0, j + 1); j++; if (j === word.length) { isDeleting = true; setTimeout(type, 2000); return; } }
-            setTimeout(type, isDeleting ? 75 : 150);
-        }
-        type();
-    </script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
