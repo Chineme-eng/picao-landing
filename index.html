@@ -11,14 +11,21 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 1);
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans antialiased">
 
     <nav class="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
         <div class="text-2xl font-bold tracking-tight">Picao<span class="text-indigo-600">AI</span></div>
-        <div class="text-sm font-medium bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full ring-1 ring-indigo-700/10">
-            Early Alpha: 5 Slots Open
+        <div class="flex items-center gap-4">
+            <span class="text-xs font-bold bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full uppercase tracking-wider">
+                Alpha Phase: 5 Slots Open
+            </span>
         </div>
     </nav>
 
@@ -28,64 +35,88 @@
             <span class="gradient-text">3 platform-ready posts + hooks.</span>
         </h1>
         <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
-            The content workflow for LinkedIn solopreneurs. We take your raw ideas and deliver 24-hour drafts that actually sound like you.
+            The high-signal content workflow for LinkedIn solopreneurs. We take your raw ideas and deliver 24-hour drafts that sound exactly like you.
         </p>
         
-        <div class="bg-white p-2 rounded-xl shadow-xl ring-1 ring-slate-200 max-w-md mx-auto">
-            <div class="flex flex-col space-y-2">
-                <button onclick="window.location.href='#signup'" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 rounded-lg transition-all">
-                    Claim 1 of 5 Alpha Slots
-                </button>
-            </div>
+        <div class="flex flex-col items-center justify-center gap-4">
+            <button 
+                data-tally-open="YOUR_TALLY_ID" 
+                class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-lg hover:shadow-indigo-200 text-lg"
+            >
+                Claim Alpha Access
+            </button>
+            <p class="text-sm text-slate-400 italic">No credit card required. Founder-reviewed drafts.</p>
         </div>
-        <p class="mt-4 text-sm text-slate-400 italic">No credit card required. 24h delivery guaranteed.</p>
     </header>
 
-    <section class="bg-white border-y border-slate-200 py-20">
+    <section class="bg-white border-y border-slate-200 py-24">
         <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-center text-sm font-bold text-indigo-600 uppercase tracking-widest mb-12">The 24-Hour Workflow</h2>
             <div class="grid md:grid-cols-3 gap-12">
-                <div>
-                    <h3 class="font-bold text-lg mb-2">1. Record</h3>
-                    <p class="text-slate-600">Dump your insights into a 2-minute voice note. No script, no polish, just raw expertise.</p>
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center font-bold mb-4">1</div>
+                    <h3 class="font-bold text-xl mb-2">Record</h3>
+                    <p class="text-slate-600">Voice-memo your insights. No script, no polish, just raw expertise shared while you walk or commute.</p>
                 </div>
-                <div>
-                    <h3 class="font-bold text-lg mb-2">2. Refract</h3>
-                    <p class="text-slate-600">Our AI identifies the "hooks" and "value nuggets." Founder-reviewed for quality insurance.</p>
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center font-bold mb-4">2</div>
+                    <h3 class="font-bold text-xl mb-2">Refract</h3>
+                    <p class="text-slate-600">Our engine identifies the "hooks" and "value nuggets." We structure them into 3 distinct post styles.</p>
                 </div>
-                <div>
-                    <h3 class="font-bold text-lg mb-2">3. Post</h3>
-                    <p class="text-slate-600">Receive 3 distinct drafts optimized for LinkedIn within 24 hours. Copy, paste, and win.</p>
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center font-bold mb-4">3</div>
+                    <h3 class="font-bold text-xl mb-2">Publish</h3>
+                    <p class="text-slate-600">Receive your platform-ready drafts in 24 hours. Copy, paste, and engage with your audience.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="max-w-4xl mx-auto px-6 py-20 text-center">
-        <h2 class="text-2xl font-bold mb-12 text-slate-800">Early Alpha Signals (n=5)</h2>
-        <div class="grid grid-cols-2 md:grid-cols-2 gap-8">
-            <div class="p-6">
-                <div class="text-4xl font-bold text-indigo-600 mb-1">4x</div>
-                <div class="text-slate-500 uppercase tracking-wide text-xs font-semibold">Self-reported posting frequency</div>
+    <section class="max-w-4xl mx-auto px-6 py-24 text-center">
+        <h2 class="text-3xl font-bold mb-4">Early Alpha Signals</h2>
+        <p class="text-slate-500 mb-12 uppercase text-xs tracking-widest font-bold">Metrics based on internal testing (n=5)</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <div class="p-8 border border-slate-200 rounded-2xl">
+                <div class="text-5xl font-extrabold text-indigo-600 mb-2">4x</div>
+                <div class="text-slate-600 font-medium">Self-reported posting frequency</div>
             </div>
-            <div class="p-6">
-                <div class="text-4xl font-bold text-indigo-600 mb-1">15+ hrs</div>
-                <div class="text-slate-500 uppercase tracking-wide text-xs font-semibold">Estimated monthly time saved</div>
+            <div class="p-8 border border-slate-200 rounded-2xl">
+                <div class="text-5xl font-extrabold text-indigo-600 mb-2">15+ hrs</div>
+                <div class="text-slate-600 font-medium">Estimated monthly time saved</div>
             </div>
         </div>
-        <div class="mt-12 bg-slate-100 rounded-lg p-6 inline-block">
-            <p class="text-slate-700 italic">"The first AI tool that didn't make me sound like a corporate robot."</p>
-            <p class="text-sm font-bold mt-2 text-slate-500">— Alpha Tester #2</p>
+
+        <div class="max-w-2xl mx-auto bg-indigo-50 border border-indigo-100 rounded-2xl p-8 italic text-slate-700">
+            "The first AI tool that didn't make me sound like a corporate robot. It captured my actual tone from a messy voice note."
+            <div class="mt-4 not-italic font-bold text-indigo-600 text-sm">— Alpha Tester #2 (Solopreneur)</div>
         </div>
     </section>
 
-    <footer id="signup" class="max-w-2xl mx-auto px-6 py-24 text-center">
-        <h2 class="text-3xl font-bold mb-4">Ready to ideate and launch?</h2>
-        <p class="text-slate-600 mb-8">We are manually onboarding 5 solopreneurs this week to ensure 24h delivery quality.</p>
-        <a href="mailto:founder@picaoai.com?subject=Alpha%20Access%20Request" class="inline-block bg-slate-900 text-white px-8 py-4 rounded-lg font-bold hover:bg-slate-800">
-            Email for Alpha Access
-        </a>
-        <p class="mt-4 text-xs text-slate-400 underline">Coming soon: Full self-serve workspace</p>
+    <footer id="signup" class="max-w-5xl mx-auto px-6 py-20">
+        <div class="bg-slate-900 rounded-[3rem] p-12 text-center text-white relative overflow-hidden">
+            <div class="absolute -top-24 -left-24 w-64 h-64 bg-indigo-500/20 blur-[80px]"></div>
+            
+            <h2 class="text-4xl font-bold mb-6">Ready to ideate and launch?</h2>
+            <p class="text-slate-400 mb-10 max-w-md mx-auto">
+                We are manually onboarding 5 solopreneurs this week to ensure high-touch quality.
+            </p>
+            
+            <button 
+                data-tally-open="9qQ7GV" 
+                class="bg-white text-slate-900 px-12 py-5 rounded-2xl font-bold text-xl hover:bg-indigo-50 transition-all shadow-xl"
+            >
+                Apply for Alpha Access
+            </button>
+            
+            <div class="mt-12 pt-12 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-xl font-bold">Picao<span class="text-indigo-400">AI</span></div>
+                <div class="text-slate-500 text-sm italic">© 2026 Picao AI. Built for the next generation of creators.</div>
+            </div>
+        </div>
     </footer>
+
+    <script async src="https://tally.so/widgets/embed.js"></script>
 
 </body>
 </html>
