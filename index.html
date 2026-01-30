@@ -53,6 +53,12 @@
             70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
             100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
         }
+
+        .version-stamp {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body class="bg-[#f8fafc] text-slate-900">
@@ -62,6 +68,7 @@
             <div class="flex items-center gap-3">
                 <img src="Picao-Logo.png" alt="Picao AI Logo" class="h-8 w-auto">
                 <span class="text-xl font-extrabold tracking-tight">Picao<span class="text-indigo-600">AI</span></span>
+                <span class="version-stamp ml-2 text-slate-400 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">v0.4.2-α</span>
             </div>
             <div class="flex items-center gap-6">
                 <span class="hidden sm:block text-[10px] font-bold text-indigo-600 bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-full uppercase tracking-tighter">
@@ -142,11 +149,11 @@
                             </div>
                             <div class="space-y-4">
                                 <div class="bg-white/5 p-3 rounded-lg border border-white/10">
-                                    <p class="text-[10px] text-indigo-400 font-bold uppercase mb-1">LinkedIn Draft</p>
+                                    <p class="text-[10px] text-indigo-400 font-bold uppercase mb-1 text-xs">LinkedIn Draft</p>
                                     <p class="text-[11px] text-slate-200 leading-relaxed">"Feature bloat is a symptom of fear. As founders, we hide behind buttons..."</p>
                                 </div>
                                 <div class="bg-white/5 p-3 rounded-lg border border-white/10">
-                                    <p class="text-[10px] text-indigo-400 font-bold uppercase mb-1">X (Twitter) Thread Hook</p>
+                                    <p class="text-[10px] text-indigo-400 font-bold uppercase mb-1 text-xs">X (Twitter) Thread</p>
                                     <p class="text-[11px] text-slate-200 leading-relaxed">"Stop building features. Start building clarity. Here’s why your roadmap is lying to you: 🧵"</p>
                                 </div>
                             </div>
@@ -178,12 +185,15 @@
             <button data-tally-open="9qQ7GV" class="btn-pop bg-white text-indigo-600 px-12 py-5 rounded-2xl font-bold text-xl">
                 Claim My Slot
             </button>
-            <div class="mt-16 flex flex-col md:flex-row justify-between items-center opacity-60 text-xs gap-4">
+            <div class="mt-16 pt-8 border-t border-indigo-500 flex flex-col md:flex-row justify-between items-center opacity-80 text-xs gap-4">
                 <div class="flex items-center gap-2">
                     <img src="Picao-Logo.png" alt="Logo" class="h-4 brightness-200">
                     <span class="font-bold uppercase tracking-widest">Picao AI &copy; 2026</span>
                 </div>
-                <p>Unified Workspace for Modern Builders</p>
+                <div class="flex items-center gap-4">
+                    <span class="version-stamp opacity-70">BUILD_260130_STABLE</span>
+                    <span>Unified Workspace for Modern Builders</span>
+                </div>
             </div>
         </div>
     </footer>
