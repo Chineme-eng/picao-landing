@@ -6,48 +6,82 @@
     <title>Picao AI | Voice to Content for Solopreneurs</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .gradient-text {
-            background: linear-gradient(90deg, #6366f1, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(226, 232, 240, 1);
-        }
+        .gradient-text { background: linear-gradient(90deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 1); }
+        .demo-window { border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; background: white; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans antialiased">
 
     <nav class="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
-        <div class="text-2xl font-bold tracking-tight">Picao<span class="text-indigo-600">AI</span></div>
+        <div class="flex items-center gap-2">
+            <img src="Picao-Logo.png" alt="Picao AI Logo" class="h-8 w-auto">
+            <span class="text-2xl font-bold tracking-tight">Picao<span class="text-indigo-600">AI</span></span>
+        </div>
         <div class="flex items-center gap-4">
-            <span class="text-xs font-bold bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full uppercase tracking-wider">
+            <span class="hidden md:inline text-xs font-bold bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full uppercase tracking-wider">
                 Alpha Phase: 5 Slots Open
             </span>
         </div>
     </nav>
 
-    <header class="max-w-4xl mx-auto px-6 pt-16 pb-24 text-center">
+    <header class="max-w-4xl mx-auto px-6 pt-12 pb-20 text-center">
         <h1 class="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
             Turn a 2-minute voice note into <br>
             <span class="gradient-text">3 platform-ready posts + hooks.</span>
         </h1>
         <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
-            The high-signal content workflow for LinkedIn solopreneurs. We take your raw ideas and deliver 24-hour drafts that sound exactly like you.
+            The content workflow for LinkedIn solopreneurs. We take your raw ideas and deliver 24-hour drafts that sound exactly like you.
         </p>
-        
-        <div class="flex flex-col items-center justify-center gap-4">
-            <button 
-                data-tally-open="YOUR_TALLY_ID" 
-                class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-lg hover:shadow-indigo-200 text-lg"
-            >
-                Claim Alpha Access
-            </button>
-            <p class="text-sm text-slate-400 italic">No credit card required. Founder-reviewed drafts.</p>
-        </div>
+        <button data-tally-open="9qQ7GV" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-lg text-lg">
+            Claim Alpha Access
+        </button>
     </header>
+
+    <section class="max-w-5xl mx-auto px-6 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-2">See how it works</h2>
+            <p class="text-slate-500 italic text-sm">Preview based on actual Alpha output</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+            <div class="demo-window">
+                <div class="bg-slate-100 px-4 py-2 border-b border-slate-200 flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <span class="text-xs font-semibold text-slate-500">YOUR RAW VOICE NOTE</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-3 mb-4 text-indigo-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                        </svg>
+                        <span class="font-mono text-sm">02:14 Recording...</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "So I was thinking about how builders often get stuck in the 'feature trap' instead of just launching. Like, you spend three weeks on a button when you should be talking to users. I want a post about the 'Minimum Viable Ego'..."
+                    </p>
+                </div>
+            </div>
+
+            <div class="demo-window border-indigo-200 bg-indigo-50/30">
+                <div class="bg-indigo-600 px-4 py-2 flex justify-between items-center">
+                    <span class="text-xs font-semibold text-white">PICAO AI OUTPUT (DRAFT 1 of 3)</span>
+                    <span class="text-[10px] bg-white/20 text-white px-2 py-0.5 rounded">24h Delivery</span>
+                </div>
+                <div class="p-6">
+                    <p class="font-bold text-slate-900 mb-2">Hook: Your ego is killing your product.</p>
+                    <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                        I spent 3 weeks on a single button. Total waste of time.<br><br>
+                        Builders get stuck in the "Feature Trap" because it's safer than talking to users. But the best products aren't built in silos...
+                    </p>
+                    <div class="flex gap-2">
+                        <span class="text-[10px] border border-indigo-200 text-indigo-600 px-2 py-1 rounded">LinkedIn Optimized</span>
+                        <span class="text-[10px] border border-indigo-200 text-indigo-600 px-2 py-1 rounded">Tone: Direct</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="bg-white border-y border-slate-200 py-24">
         <div class="max-w-5xl mx-auto px-6">
@@ -56,67 +90,54 @@
                 <div class="glass-card p-8 rounded-2xl">
                     <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center font-bold mb-4">1</div>
                     <h3 class="font-bold text-xl mb-2">Record</h3>
-                    <p class="text-slate-600">Voice-memo your insights. No script, no polish, just raw expertise shared while you walk or commute.</p>
+                    <p class="text-slate-600">Voice-memo your insights. No script, no polish, just raw expertise.</p>
                 </div>
                 <div class="glass-card p-8 rounded-2xl">
                     <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center font-bold mb-4">2</div>
                     <h3 class="font-bold text-xl mb-2">Refract</h3>
-                    <p class="text-slate-600">Our engine identifies the "hooks" and "value nuggets." We structure them into 3 distinct post styles.</p>
+                    <p class="text-slate-600">Our engine identifies the hooks and structures them into 3 distinct post styles.</p>
                 </div>
                 <div class="glass-card p-8 rounded-2xl">
                     <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center font-bold mb-4">3</div>
                     <h3 class="font-bold text-xl mb-2">Publish</h3>
-                    <p class="text-slate-600">Receive your platform-ready drafts in 24 hours. Copy, paste, and engage with your audience.</p>
+                    <p class="text-slate-600">Receive 3 platform-ready drafts in 24 hours. Copy, paste, and win.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="max-w-4xl mx-auto px-6 py-24 text-center">
-        <h2 class="text-3xl font-bold mb-4">Early Alpha Signals</h2>
-        <p class="text-slate-500 mb-12 uppercase text-xs tracking-widest font-bold">Metrics based on internal testing (n=5)</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <h2 class="text-3xl font-bold mb-4 text-slate-800">Early Alpha Signals</h2>
+        <p class="text-slate-500 mb-12 uppercase text-xs tracking-widest font-bold">Internal Testing (n=5)</p>
+        <div class="grid grid-cols-2 gap-8 mb-16">
             <div class="p-8 border border-slate-200 rounded-2xl">
                 <div class="text-5xl font-extrabold text-indigo-600 mb-2">4x</div>
-                <div class="text-slate-600 font-medium">Self-reported posting frequency</div>
+                <div class="text-slate-600 font-medium">Posting freq (self-reported)</div>
             </div>
             <div class="p-8 border border-slate-200 rounded-2xl">
                 <div class="text-5xl font-extrabold text-indigo-600 mb-2">15+ hrs</div>
-                <div class="text-slate-600 font-medium">Estimated monthly time saved</div>
+                <div class="text-slate-600 font-medium">Monthly time saved (est.)</div>
             </div>
-        </div>
-
-        <div class="max-w-2xl mx-auto bg-indigo-50 border border-indigo-100 rounded-2xl p-8 italic text-slate-700">
-            "The first AI tool that didn't make me sound like a corporate robot. It captured my actual tone from a messy voice note."
-            <div class="mt-4 not-italic font-bold text-indigo-600 text-sm">— Alpha Tester #2 (Solopreneur)</div>
         </div>
     </section>
 
     <footer id="signup" class="max-w-5xl mx-auto px-6 py-20">
-        <div class="bg-slate-900 rounded-[3rem] p-12 text-center text-white relative overflow-hidden">
-            <div class="absolute -top-24 -left-24 w-64 h-64 bg-indigo-500/20 blur-[80px]"></div>
-            
+        <div class="bg-slate-900 rounded-[3rem] p-12 text-center text-white shadow-2xl">
             <h2 class="text-4xl font-bold mb-6">Ready to ideate and launch?</h2>
-            <p class="text-slate-400 mb-10 max-w-md mx-auto">
-                We are manually onboarding 5 solopreneurs this week to ensure high-touch quality.
-            </p>
-            
-            <button 
-                data-tally-open="9qQ7GV" 
-                class="bg-white text-slate-900 px-12 py-5 rounded-2xl font-bold text-xl hover:bg-indigo-50 transition-all shadow-xl"
-            >
+            <p class="text-slate-400 mb-10 max-w-md mx-auto">We are manually onboarding 5 solopreneurs this week.</p>
+            <button data-tally-open="YOUR_TALLY_ID" class="bg-white text-slate-900 px-12 py-5 rounded-2xl font-bold text-xl hover:bg-indigo-50 transition-all">
                 Apply for Alpha Access
             </button>
-            
             <div class="mt-12 pt-12 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="text-xl font-bold">Picao<span class="text-indigo-400">AI</span></div>
-                <div class="text-slate-500 text-sm italic">© 2026 Picao AI. Built for the next generation of creators.</div>
+                <div class="flex items-center gap-2">
+                    <img src="Picao-Logo.png" alt="Picao AI Logo" class="h-6 w-auto brightness-200">
+                    <span class="text-xl font-bold">Picao<span class="text-indigo-400">AI</span></span>
+                </div>
+                <div class="text-slate-500 text-sm italic">© 2026 Picao AI. Build faster.</div>
             </div>
         </div>
     </footer>
 
     <script async src="https://tally.so/widgets/embed.js"></script>
-
 </body>
 </html>
